@@ -1,0 +1,42 @@
+<div class="flex fColumn gap40 pad20 crG mT40">
+    <div class="flex fRow w100 aCenter">
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{(users$ | async)}}</p>
+            <small>utenti</small>
+        </div>
+        <div class="flex f1 fColumn gap5 aCenter">
+            <p class="f1 textCenter">{{(businesses$ | async)}}</p>
+            <small>locali</small>
+        </div>
+    </div>
+    <div class="flex fRow w100 aCenter">
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{(cards$ | async)}}</p>
+            <small>carte</small>
+        </div>
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{getCardsOnUsers()}}</p>
+            <small>CPU</small>
+        </div>
+    </div>
+    <div class="flex fRow w100 aCenter">
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{(reservations$ | async)}}</p>
+            <small>Prenot.</small>
+        </div>
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{(reservationsToday$ | async)}}</p>
+            <small>Pre. Oggi</small>
+        </div>
+    </div>
+    <div class="flex fRow w100 aCenter">
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{(reviews$ | async)}}</p>
+            <small>Reviews</small>
+        </div>
+        <div class="flex fColumn f1 gap5 aCenter">
+            <p class="f1 textCenter">{{(reviewsToday$ | async)}}</p>
+            <small>Rev. Oggi</small>
+        </div>
+    </div>
+</div>

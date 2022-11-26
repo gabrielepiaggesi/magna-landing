@@ -1,0 +1,72 @@
+<div class="container">
+    <div *ngIf="!!loading" class="spinner mAuto"></div>
+    <div class="menu" *ngFor="let m of menu; let i = index;">
+        <p *ngIf="!m.edit" (click)="editCat(m, i)" class="title">{{m.name}}</p>
+        <p *ngIf="m.message" (click)="editCat(m, i)" class="bio textCenter">{{m.message}}</p>
+
+        <div class="edit" *ngIf="m.edit">
+            <ng-container *ngIf="!m.deleting">
+                <label>Numero/Posizione:</label>
+                <input step="1" placeholder="1" type="tel" name="num" pattern="[0-9]" [disabled]="this.loading" class="price" [(ngModel)]="m.cat_position">
+                <label>Nome Lista:</label>
+                <input placeholder="Antipasti" type="text" class="price" [(ngModel)]="m.name">
+                <label>Informazioni Ulteriori:</label>
+                <textarea placeholder="Intolleranze/Prodotti Surgelati/Impasti o altro"  [disabled]="this.loading" cols="30" rows="5" class="bio" [(ngModel)]="m.message"></textarea>
+                
+                <button (click)="saveCat(m, i)">salva</button>
+                <button (click)="cancelCat(m, i)">annulla</button>
+                <button (click)="m.deleting = true">elimina menu</button>
+            </ng-container>
+
+            <ng-container *ngIf="m.deleting">
+                <label>Sicuro di Eliminare?</label>
+                <button class="bgrW" (click)="m.deleting = false">annulla eliminazione</button>
+                <button class="bgrR" [disabled]="this.loading" (click)="deleteCat(m, i)">elimina menu</button>
+            </ng-container>
+        </div>
+
+        <div  *ngFor="let item of m.items; let idx = index;">
+            <div *ngIf="!item.edit" class="item" (click)="editItem(item, idx)">
+                <div class="detail">
+                    <small>Posizione: {{item.item_position}}</small>
+                    <!-- <span class="name">{{item.position}}</span> -->
+                    <span class="name">{{item.name}}</span>
+                    <span *ngIf="item.bio && item.bio != 'null'" class="bio">{{item.bio}}</span>
+                </div>
+                <div class="price">
+                    <span class="value">{{item.price}}</span>
+                </div>
+            </div>
+            <div class="edit" *ngIf="item.edit">
+                <ng-container *ngIf="!item.deleting">
+                    <label>Numero/Posizione:</label>
+                    <input step="1" placeholder="Numero Posizione" type="tel" name="num" pattern="[0-9]" [disabled]="this.loading" class="price" [(ngModel)]="item.item_position">
+                    <label>Nome:</label>
+                    <input placeholder="Nome Piatto" [disabled]="this.loading" type="text" class="price" [(ngModel)]="item.name">
+                    <label>Prezzo:</label>
+                    <input placeholder="5€" [disabled]="this.loading" type="text" name="" id="" class="name" [(ngModel)]="item.price">
+                    <label>Descrizione (facoltativa):</label>
+                    <textarea placeholder="Breve descrizione"  [disabled]="this.loading" cols="30" rows="5" class="bio" [(ngModel)]="item.bio"></textarea>
+                    
+                    <button [disabled]="this.loading" (click)="saveItem(m, item, idx)">salva</button>
+                    <button [disabled]="this.loading" (click)="cancelItem(m, item, idx)">annulla</button>
+                    <button *ngIf="item.status == 'suspended'" [disabled]="this.loading" (click)="enableItem(m, item, idx)">setta disponibile</button>
+                    <button *ngIf="item.status == 'active'" [disabled]="this.loading" (click)="disableItem(m, item, idx)">setta non disponibile</button>
+                    <button [disabled]="this.loading" class="bgrR" (click)="item.deleting = true">elimina piatto</button>
+                </ng-container>
+                <ng-container *ngIf="item.deleting">
+                    <label>Sicuro di Eliminare?</label>
+                    <button class="bgrW" (click)="item.deleting = false">annulla eliminazione</button>
+                    <button [disabled]="this.loading" class="bgrR" (click)="deleteItem(m, item, idx)">elimina piatto</button>
+                </ng-container>
+            </div>
+        </div>
+        <button style="margin-top: 21px;" (click)="newItem(m, m.items)">aggiungi piatto</button>
+    </div>
+    <button style="margin-top: 21px;" (click)="newMenu(menu)">aggiungi categoria</button>
+
+</div>
+
+<!-- <div *ngIf="!!loading" class="spinner mAuto"></div> -->
+
+

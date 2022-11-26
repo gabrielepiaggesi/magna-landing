@@ -1,0 +1,88 @@
+.container {
+    color: #484848;
+    // padding: 0 10px;
+    padding-bottom: 84px;
+
+    div {
+        overflow: hidden;
+    }
+    span {
+        display: block;
+    }
+
+    .menu {
+        margin: 0 10px;
+        padding: 25px 10px;
+        border: 1px solid #E0E0E0;
+        border-radius: 10px;
+        margin-top: 21px;
+        margin-bottom: 0;
+        background-color: white;
+
+        .title {
+            margin-top: 0;
+            margin-bottom: 21px;
+            font-size: 21px;
+            font-weight: 700;
+            text-align: center;
+        }
+        .item {
+            margin-top: 34px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            .detail {
+                max-width: 80%;
+            }
+            .name {
+                font-weight: 500;
+            }
+            .name, .bio, .price {
+                font-size: 18px;
+                margin: 3px 0;
+            }
+            .bio {
+                opacity: 0.6;
+            }
+        }
+    }
+
+}
+
+.edit {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: white !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    background: transparent;
+    // border: 1px solid #E0E0E0;
+    // margin: 10px auto;
+    z-index: 99;
+    padding-top: 40px;
+}
+
+input, textarea, button {
+    padding: 5px;
+    margin: 5px auto;
+    width: 90%;
+    font-size: 16px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    display: block;
+}
+
+button {
+    padding: 10px;
+    margin: 10px auto;
+    font-weight: 600;
+    border-radius: 10px;
+    background: #769e79;
+    color: white;
+}

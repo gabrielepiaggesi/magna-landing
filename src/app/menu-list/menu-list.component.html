@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="menu" *ngFor="let m of list; let i = index;">
+        <p *ngIf="!m.edit" (click)="m.edit = !m.edit" class="title">{{m.name}}</p>
+
+        <div *ngIf="m.edit" class="edit">
+            <ng-container *ngIf="!m.deleting">
+                <input placeholder="Nome Menu" type="text" class="price" [(ngModel)]="m.name">
+                <button (click)="save(m, i)">salva</button>
+                <button (click)="cancel(m, i)">annulla</button>
+                <button *ngIf="m.id" (click)="m.deleting = true">elimina menu</button>
+            </ng-container>
+
+            <ng-container *ngIf="m.deleting">
+                <label>Sicuro di Eliminare?</label>
+                <button class="bgrW" (click)="m.deleting = false">annulla eliminazione</button>
+                <button *ngIf="m.id" (click)="delete(m, i)">elimina menu</button>
+            </ng-container>
+        </div>
+
+        <div *ngIf="!m.edit" class="editBtn">
+            <button (click)="open(m, i)">apri</button>
+            <button (click)="m.edit = !m.edit">modifica</button>
+        </div>
+    </div>
+    <button (click)="newMenu()">aggiungi menu</button>
+    
+    <div *ngIf="!!loading" class="spinner mAuto"></div>
+</div>
+
+
+

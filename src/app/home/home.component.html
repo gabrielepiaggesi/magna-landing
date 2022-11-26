@@ -1,0 +1,138 @@
+<div class="flex fColumn pad20 gap40 bgrG">
+
+
+  <ng-container *ngIf="appService.businessId">
+    <div class="flex fColumn gap5 textCenter">
+      <img class="br20 mXAuto" width="100" src="./../assets/cbLogo.png" alt="">
+    <h4>codice locale: {{appService.businessId}}</h4>
+    </div>
+    <div class="flex fColumn gap10 textCenter">
+      <h2>Con l'app Comeback puoi avere la Carta Fedeltà di questo locale, sempre con te.</h2>
+    </div>
+
+    <!-- <img class="br20 mXAuto" width="100" src="./../assets/cbLogo.png" alt=""> -->
+    <div class="flex fRow jBet gap20 aCenter textCenter">
+      <button class="br10 pad10 btnDark" (click)="ios()"><i class="fa-brands fa-apple"></i>&nbsp;Scarica per
+        iPhone</button>
+      <button class="br10 pad10 btnDark" (click)="app()"><i class="fa-brands fa-android"></i>&nbsp;Scarica per
+        Android</button>
+    </div>
+
+    <div class="flex fColumn gap10 bgrR pad20 br20">
+      <h2>Istruzioni:</h2>
+      <ol style="padding-inline-start: 20px;">
+        <li>Scarica l'app</li>
+        <li>Entra e clicca sul "+"</li>
+        <li>Scrivi il codice del locale "{{appService.businessId}}" e clicca su "avanti"</li>
+        <li>Clicca su "aggiungi carta fedeltà", <strong>ora hai la carta!</strong></li>
+      </ol>
+      <p style="font-size: 18px;"><strong>PS: Puoi anche prenotare!</strong></p>
+    </div>
+
+
+    <div class="flex fColumn gap10">
+      <h3>A che serve Comeback?</h3>
+      <p style="font-size: 18px;">L'App Comeback ti permette di collezionare le carte fedeltà dei locali preferiti, ricevere gli sconti previsti, ed anche prenotare e scrivere recensioni anonime!</p>
+    </div>
+
+    <div class="flex fColumn gap10">
+      <h3>Chi usa Comeback?</h3>
+      <ul class="gap10">
+        <li>Tavole Calde / Rosticcerie nei pressi di uffici.</li>
+        <li>Pizzerie</li>
+        <li>Ristoranti Italiani</li>
+        <li>POKE</li>
+        <li>SUSHI</li>
+        <li>Ristoranti / Rosticcerie Cinesi</li>
+        <li>PUB / Bistrot</li>
+        <li>Home Restaurant</li>
+        <li>Discoteche</li>
+        <li>Alimentari</li>
+        <li>Parruchieri / Barbieri</li>
+        <li>Estetisti</li>
+        <li>Mercati</li>
+        <li>Centri Massaggi</li>
+        <li>...</li>
+      </ul>
+    </div>
+
+
+    <div class="flex fColumn gap10">
+      <h3>Funzionalità di Comeback:</h3>
+      <ul class="gap10">
+          <li>Carte Fedeltà.</li>
+          <li>Notifiche ai Clienti.</li>
+          <li>Recensioni private dei clienti.</li>
+          <li>Gestione Sconti/Premi.</li>
+          <li>Prenotazioni dall'app.</li>
+      </ul>
+    </div>
+
+    <div class="flex fColumn gap10">
+      <h3>Vuoi Comeback per la tua attività? Carte Fedeltà e Prenotazioni dall'app!</h3>
+      <p style="font-size: 18px;" (click)="mail()"><span>Scrivici a </span><span style="text-decoration: underline;">comebackwebapp@gmail.com</span></p>
+    </div>
+    <br>
+    <br>
+    <br>
+
+  </ng-container>
+
+
+
+
+  <ng-container *ngIf="!appService.businessId">
+    <img class="br30 mXAuto" width="200" src="./../assets/cbLogo.png" alt="">
+    <div class="flex fColumn gap5 textCenter">
+      <h2>Carte Fedeltà, Sconti e Prenotazioni, tutto dall'app!</h2>
+      <small style="display: block;">made in italy</small>
+    </div>
+    <div class="flex fRow jBet gap20 aCenter textCenter">
+      <button class="br10 pad10 btnDark" (click)="ios()"><i class="fa-brands fa-apple"></i>&nbsp;Scarica per
+        iPhone</button>
+      <button class="br10 pad10 btnDark" (click)="app()"><i class="fa-brands fa-android"></i>&nbsp;Scarica per
+        Android</button>
+    </div>
+    <div class="flex fColumn gap5 fCenter textCenter">
+      <h4>
+        Vuoi Comeback per il tuo locale? Vuoi Assistenza? scrivici:
+      </h4>
+      <h4 style="text-decoration: underline;" (click)="mail()">comebackwebapp@gmail.com</h4>
+    </div>
+    <br>
+    <div class="flex fColumn gap10">
+      <h3>Chi usa Comeback?:</h3>
+      <ul class="gap10">
+        <li>Tavole Calde / Rosticcerie nei pressi di uffici.</li>
+        <li>Pizzerie</li>
+        <li>Ristoranti Italiani</li>
+        <li>POKE</li>
+        <li>SUSHI</li>
+        <li>Ristoranti / Rosticcerie Cinesi</li>
+        <li>PUB / Bistrot</li>
+        <li>Home Restaurant</li>
+        <li>Discoteche</li>
+        <li>Alimentari</li>
+        <li>Parruchieri / Barbieri</li>
+        <li>Estetisti</li>
+        <li>Mercati</li>
+        <li>Centri Massaggi</li>
+        <li>...</li>
+      </ul>
+    </div>
+    <div class="flex fColumn gap10">
+      <h3>Funzionalità di Comeback:</h3>
+      <ul class="gap10">
+          <li>Carte Fedeltà.</li>
+          <li>Notifiche ai Clienti.</li>
+          <li>Recensioni private dei clienti.</li>
+          <li>Gestione Sconti/Premi.</li>
+          <li>Prenotazioni dall'app.</li>
+      </ul>
+    </div>
+    <br>
+  </ng-container>
+</div>
+
+
+<!-- <iframe style="width: 100%; height: 100vh;" src="https://www.leggimenu.it/menu/demo" frameborder="0"></iframe> -->

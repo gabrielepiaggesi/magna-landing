@@ -1,0 +1,7 @@
+<div *ngIf="!!loading" class="spinner mAuto mT40"></div>
+
+<form *ngIf="!loading" class="flex fColumn gap10 pad20 w100 mT40" [formGroup]="addUserBusinessForm">
+    <input placeholder="USER ID" class="w100 btn1 br10 boxSha pad15" formControlName="userId" type="number" name="userId" id="userId">
+    <input placeholder="BUSINESS ID" class="w100 btn1 br10 boxSha pad15" formControlName="businessId" type="number" name="businessId" id="businessId">
+    <button [disabled]="addUserBusinessForm.invalid" (click)="addUser()" class="w100 br10 btn1 bgrG boxSha pad15 brN w100" type="button">conferma</button>
+</form>

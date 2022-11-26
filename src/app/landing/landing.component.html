@@ -1,0 +1,65 @@
+<div class="flex fColumn pad10 gap20 bgrWl">
+    <div *ngIf="!!loading" class="spinner mAuto"></div>
+
+    <ng-container *ngIf="(card$ | async) as card">
+        <h3 class="businessName">{{card.business_name}}</h3>
+        <!-- <button 
+            *ngIf="card?.business_menu_link" 
+            (click)="open(card?.business_menu_link)" 
+            class="w100 br10 btn1 bgrW boxSha pad15 brN w100 crG"
+        >
+            {{ (tr?.menu || 'leggi il menù') }}
+        </button> -->
+        <a *ngIf="card?.business_menu_link" class="w100 br10 btn1 bgrW boxSha pad15 brN w100 crG" style="text-decoration: none !important;" target="_blank" [href]="card?.business_menu_link">{{ (tr?.menu || 'leggi il menù') }}</a>
+        <ng-container *ngIf="card?.discount_amount">
+            <div class="flex fColumn bgrR br10 pad15 boxSha gap5">
+                <p style="font-size: 1.37em;">
+                    <strong>
+                        {{ (tr?.discount || 'Ricevi uno SCONTO di ') }}
+                        {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }} !
+                    </strong> 
+                </p>
+                <h3 class="fw5">
+                    {{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }}
+                    <strong>{{card.business_name}}.</strong>
+                </h3>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="!card?.discount_amount">
+            <div class="flex fColumn bgrR br10 pad15 boxSha">
+                <h3 class="fw5">
+                    <strong>
+                        {{card?.slogan || 'PASTO GRATIS!'}}
+                    </strong> 
+                    {{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }}<strong>{{card.business_name}}.</strong>
+                </h3>
+            </div>
+        </ng-container>
+        <app-card (click)="clickCard()" [fidelity]="card" [lang]="lang"></app-card>
+        <div class="flex fColumn bgrGG br10 pad15 boxSha">
+            <h3>{{ (tr?.wantCard || 'Vuoi questa Carta Fedeltà ?') }}</h3>
+            <ol style="padding-inline-start: 20px;">
+                <li>{{ (tr?.downloadApp || "Scarica l'app COMEBACK") }}</li>
+                <li>{{ (tr?.enter || 'Entra, clicca sul "+", e scrivi il codice locale') }} "{{card.business_id}}".</li>
+                <li>{{ (tr?.end || 'Sconti, Prenotazioni, Recensioni e Menù, tutto con la carta! FINE.') }}</li>
+            </ol>
+            <div class="flex fRow jBet gap20 aCenter textCenter">
+                <button class="br10 pad10 btnDark" (click)="ios()"><i class="fa-brands fa-apple"></i>&nbsp;
+                    {{ (tr?.ios || 'Scarica per iPhone') }}
+                </button>
+                <button class="br10 pad10 btnDark" (click)="app()"><i class="fa-brands fa-android"></i>&nbsp;
+                    {{ (tr?.android || 'Scarica per Android') }}
+                </button>
+            </div>
+            <small class="mT20">{{card?.business_name}} {{ (tr?.info || 'usa COMEBACK per le carte fedeltà dei suoi clienti.') }}</small>
+        </div>
+        <small class="w100 textCenter mB40" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>
+        <button 
+            *ngIf="lang == 'ch'" 
+            (click)="changeLang('ch')" 
+            class="w100 br10 btn1 bgrW boxSha pad15 brN w100 crG"
+        >
+            lingua italiana
+        </button>
+    </ng-container>
+</div>

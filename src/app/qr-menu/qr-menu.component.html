@@ -1,0 +1,56 @@
+<div class="container" *ngIf="!loading && business">
+    <div class="menu header boxSha">
+        <div *ngIf="business.image_url" class="logo" [ngStyle]="{'background-image': 'url()'}"></div>
+        <p class="name">{{business.name}}</p>
+        <p class="address">{{business.address}}</p>
+        <p class="contact">{{business.contact}}</p>
+        <p class="name" *ngIf="businessEvasor">Menu non disponibile</p>
+        <!-- <p class="sponsor">Ti invitiamo a scaricare l'app COMEBACK per avere la nostra carta fedeltà, vincere sconti e prenotare. Tutto dall'app!</p> -->
+        <!-- <button (click)="leaveComment()">lascia recensione</button> -->
+    </div>
+</div>
+
+<div class="container crG" *ngIf="!loading && menus.length > 0">
+    <select name="" id="" (change)="getMenu($event.target)" class="boxSha">
+        <option [disabled]="menuSelected">Clicca qui per i Menù</option>
+        <option *ngFor="let menu of menus" value="{{menu.id}}">{{menu.name}}</option>
+    </select>
+</div>
+
+<div class="container mB40 crG" *ngIf="!loading && !loadingMenu && menuSelected">
+    <div class="menu boxSha" *ngFor="let m of menuSelected">
+        <p class="title" (click)="m.open = !m.open">{{m.name}}</p>
+        <p *ngIf="!m.open" class="textCenter crG" (click)="m.open = true">+ APRI LISTA</p>
+        <ng-container *ngIf="!!m.open">
+            <div *ngIf="m.message" class="textCenter pad10 br10 messageBox">
+                <p class="bio">{{m.message}}</p>
+            </div>
+            <div class="item" *ngFor="let item of m.items">
+                <div class="detail">
+                    <span class="name">{{item.name}}</span>
+                    <span *ngIf="item.bio && item.status == 'active' && item.bio != 'null'" class="bio">{{item.bio}}</span>
+                    <span *ngIf="item.status != 'active'" class="bio">Non Disponibile / Not Available</span>
+                </div>
+                <div class="price">
+                    <span class="value">{{item.price}}</span>
+                </div>
+            </div>
+        </ng-container>
+        <p *ngIf="!!m.open" class="textCenter crG mT20" (click)="m.open = false">CHIUDI</p>
+    </div>
+    <br>
+    <br>
+    <br>
+</div>
+
+<div *ngIf="!!loading || !!loadingMenu" class="spinner mAuto mT40"></div>
+
+
+<!-- <div class="spinnerMove" *ngIf="!loading && !loadingMenu && menuSelected">
+    <p style="text-align: center;">foodinocompany@gmail.com</p>
+</div>
+
+<div class="footer" (click)="share()">
+    <p>condividi ristorante</p>
+</div> -->
+
