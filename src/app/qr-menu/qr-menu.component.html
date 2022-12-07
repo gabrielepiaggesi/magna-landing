@@ -1,12 +1,10 @@
-<div class="container" *ngIf="!loading && business">
+<!-- <div class="container" *ngIf="!loading && business">
     <div class="menu header boxSha">
         <div *ngIf="business.image_url" class="logo" [ngStyle]="{'background-image': 'url()'}"></div>
         <p class="name">{{business.name}}</p>
         <p class="address">{{business.address}}</p>
         <p class="contact">{{business.contact}}</p>
         <p class="name" *ngIf="businessEvasor">Menu non disponibile</p>
-        <!-- <p class="sponsor">Ti invitiamo a scaricare l'app COMEBACK per avere la nostra carta fedeltà, vincere sconti e prenotare. Tutto dall'app!</p> -->
-        <!-- <button (click)="leaveComment()">lascia recensione</button> -->
     </div>
 </div>
 
@@ -43,7 +41,7 @@
     <br>
 </div>
 
-<div *ngIf="!!loading || !!loadingMenu" class="spinner mAuto mT40"></div>
+<div *ngIf="!!loading || !!loadingMenu" class="spinner mAuto mT40"></div> -->
 
 
 <!-- <div class="spinnerMove" *ngIf="!loading && !loadingMenu && menuSelected">
@@ -53,4 +51,59 @@
 <div class="footer" (click)="share()">
     <p>condividi ristorante</p>
 </div> -->
+
+
+<div *ngIf="!!loading" class="spinner mAuto mT40"></div>
+<div *ngIf="!loading" class="gl flex fColumn w100 hM100">
+    <img class="logo" style="z-index: 2;" src="assets/cbLogo.png" alt="">
+    <img class="w100" style="z-index: 0;" height="170" [src]="business.image_url ? business.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
+    <div style="z-index: 1;" class="overlay"></div>
+    <div class="flex fColumn gap20 pad15 crB f1 ffG" style="margin-top: -100px; z-index: 2;">
+        <div *ngIf="business" class="flex fColumn pad15 boxShaGL gap15 w100 br10 bgrW">
+            <h1 class="ffG textCenter mT15">{{business.name}}</h1>
+            <p class="ffG textCenter mB15">{{business.description}}</p>
+        </div>
+
+        <!-- <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad20 pRel"*ngIf="!loading && menus.length > 0">
+            <select name="" id="" (change)="getMenu($event.target)" class="boxSha">
+                <option [disabled]="menuSelected">Clicca qui per i Menù</option>
+                <option *ngFor="let menu of menus" value="{{menu.id}}">{{menu.name}}</option>
+            </select>
+        </div> -->
+        <select *ngIf="!loading && business && menus.length > 1" class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad20 pRel" (change)="getMenu($event.target)">
+            <option [disabled]="menuSelected">Clicca qui per i Menù</option>
+            <option *ngFor="let menu of menus" value="{{menu.id}}">{{menu.name}}</option>
+        </select>
+
+        <div class="container flex fColumn gap20">
+            <div class="menu boxShaGL" *ngFor="let m of menuSelected">
+                <p class="title" (click)="m.open = !m.open">{{m.name}}</p>
+                <p *ngIf="!m.open" class="textCenter op6" (click)="m.open = true">+ APRI LISTA</p>
+                <ng-container *ngIf="!!m.open">
+                    <div *ngIf="m.message" class="textCenter pad10 br10 messageBox">
+                        <p class="bio">{{m.message}}</p>
+                    </div>
+                    <div class="item" *ngFor="let item of m.items; let isLast = last;" [ngClass]="{ 'no-border-bottom': isLast }">
+                        <div class="detail">
+                            <span class="name">{{item.name}}</span>
+                            <span *ngIf="item.bio && item.status == 'active' && item.bio != 'null'" class="bio">{{item.bio}}</span>
+                            <span *ngIf="item.status != 'active'" class="bio">Non Disponibile / Not Available</span>
+                        </div>
+                        <div class="price">
+                            <span class="value">{{item.price}}</span>
+                        </div>
+                    </div>
+                </ng-container>
+                <p *ngIf="!!m.open" class="textCenter op6 mT20" (click)="m.open = false">CHIUDI</p>
+            </div>
+        </div>
+
+        <div *ngIf="!!loadingMenu" class="spinner mAuto mT40"></div>
+
+    </div>
+    <div class="footer flex fColumn pad15 bgrWl gap10 mT40">
+        <small class="w100 textCenter crB ffG pad10" style="text-decoration: underline;" (click)="mail()">Vuoi usare comeback per la tua attività? Scrivici</small>
+        <a class="textCenter w100 crB ffG pad10" style="text-decoration: none !important; font-size: smaller;" target="_blank" href="https://www.freepik.com/free-vector/red-ribbon-bow_1529572.htm#query=gift&position=35&from_view=search&track=sph">Image by macrovector on Freepik</a>
+    </div>
+</div>
 

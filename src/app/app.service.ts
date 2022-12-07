@@ -10,6 +10,7 @@ export class AppService {
   public TOKEN: string | undefined = undefined;
   public COMPANY_ID!: number;
   public currentCompany: any;
+  public business!: any;
 
   public getHeaders() {
     return {
@@ -142,6 +143,18 @@ export class AppService {
   public async getTotalUsers() {
     const response = await fetch(
       `${this.BASE_URL}/public/getTotalUsers`,
+      { headers: this.getHeaders() }
+    );
+    const jsonRes = await response.json();
+    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
+      throw new Error(jsonRes?.message || 'Error');
+    }
+    return jsonRes;
+  }
+
+  public async getTodayUsers() {
+    const response = await fetch(
+      `${this.BASE_URL}/public/getTodayUsers`,
       { headers: this.getHeaders() }
     );
     const jsonRes = await response.json();

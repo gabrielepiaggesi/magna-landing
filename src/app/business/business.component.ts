@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 import { AppService } from '../app.service';
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.scss']
+  selector: 'app-business',
+  templateUrl: './business.component.html',
+  styleUrls: ['./business.component.scss']
 })
-export class LandingComponent implements OnInit {
+export class BusinessComponent implements OnInit {
   public loading = false;
   public card$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public businessId!: number;
   public lang = 'it';
   public tr!: any;
   public cardClicked = 0;
+  public show2Buttons = false;
 
   public ch = {
     menu: '阅读菜单',
@@ -22,12 +23,15 @@ export class LandingComponent implements OnInit {
     withCard: '使用数字会员卡',
     wantCard: '你想要这张会员卡吗?',
     downloadApp: '下载 COMEBACK 应用程序',
+    downloadApp2: '下载COMEBACK app, 进入, 点击“+”, 输入本地代码',
     enter: '回车, 点击“+”, 输入店铺代码',
-    end: '折扣、预订、评论和菜单, 全凭卡! 结尾。',
-    ios: '为 iPhone 下载',
+    end: '菜单、折扣、预订和评论, 一切尽在会员卡!',
+    ios: '下载应用程序',
     android: '下载安卓版',
+    iphone: '为 iPhone 下载',
     info: '使用 COMEBACK 应用程序获取客户的会员卡。不再丢失纸质徽章。',
-    youToo: '您想将 COMEBACK 用于您的业务吗? 写信给我们'
+    youToo: '您想将 COMEBACK 用于您的业务吗? 写信给我们',
+    onlyWithCard: '仅使用我们的数字会员卡。'
   };
 
   public it = {
@@ -36,17 +40,21 @@ export class LandingComponent implements OnInit {
     withCard: 'Con la carta fedeltà digitale di ',
     wantCard: 'Vuoi questa Carta Fedeltà ?',
     downloadApp: "Scarica l'app COMEBACK",
+    downloadApp2: `Scarica l'app COMEBACK, entra, clicca sul "+" e scrivi il codice locale `,
     enter: 'Entra, clicca sul "+", e scrivi il codice locale ',
-    end: 'Sconti, Prenotazioni, Recensioni e Menù, tutto con la carta! FINE.',
-    ios: 'Scarica per iPhone',
+    end: 'Menù, Sconti, Prenotazioni e Recensioni, tutto con la carta fedeltà!',
+    ios: "Scarica l'app",
     android: 'Scarica per Android',
+    iphone: 'Scarica per iPhone',
     info: "usa l'app COMEBACK per le carte fedeltà dei suoi clienti. Basta tesserine di carta che ti perdi.",
-    youToo: 'Vuoi usare comeback per la tua attività? Scrivici'
+    youToo: 'Vuoi usare comeback per la tua attività? Scrivici',
+    onlyWithCard: 'Solo con la nostra carta fedeltà digitale.'
   };
 
-  constructor(public appService: AppService, public activateRouter: ActivatedRoute) {
+  constructor(public appService: AppService, public activateRouter: ActivatedRoute, public router: Router) {
     this.businessId = appService.businessId;
     this.lang = navigator.language || 'it';
+    // this.lang = 'zh';
     if (this.lang.includes('zh') || this.lang.includes('ch')) {
       this.tr = this.ch;
       this.lang = 'ch';
@@ -64,7 +72,7 @@ export class LandingComponent implements OnInit {
 
   ngOnInit(): void {
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('QR Page Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('QR Page');
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).gtag('event', 'start_page');
     } catch(e) {
       console.log(e);
@@ -104,7 +112,7 @@ export class LandingComponent implements OnInit {
     }
     window.scrollTo({ behavior: 'smooth', top: document.body.scrollHeight });
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Card Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Card');
     } catch(e) {
       console.log(e);
     }
@@ -112,7 +120,7 @@ export class LandingComponent implements OnInit {
 
   public ios() {
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App');
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
     } catch(e) {
       console.log(e);
@@ -122,7 +130,7 @@ export class LandingComponent implements OnInit {
 
   public mail() {
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Mail Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Mail');
     } catch(e) {
       console.log(e);
     }
@@ -131,7 +139,7 @@ export class LandingComponent implements OnInit {
 
   public app() {
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App');
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
     } catch(e) {
       console.log(e);
@@ -140,19 +148,20 @@ export class LandingComponent implements OnInit {
     window.open('market://details?id=com.comeback.card', '_system');
   }
   
-  // public open(link: string) {
-  //   try {
-  //     !window.location.href.includes('4200') && (window as any).gtag('event', 'menu');
-  //     !window.location.href.includes('4200') && (window as any).mixpanel.track('Menu Vecchia');
-  //   } catch(e) {
-  //     console.log(e);
-  //   }
-  //   window.open(link, 'blank');
-  // }
+  public open(link: string) {
+    window.open(link, 'blank');
+  }
+
+  public changeLang(lang: string) {
+    if (lang == 'ch') {
+      this.lang = 'it';
+      this.tr = this.it;
+    }
+  }
 
   public menu(link: string) {
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Menu Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Menu');
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).gtag('event', 'menu');
     } catch(e) {
       console.log(e);
@@ -163,11 +172,22 @@ export class LandingComponent implements OnInit {
     a.click();
   }
 
-  public changeLang(lang: string) {
-    if (lang == 'ch') {
-      this.lang = 'it';
-      this.tr = this.it;
-    }
+  public fidelityCard() {
+    this.router.navigateByUrl('fidelity-card/'+this.businessId);
   }
 
+  download() {
+
+   let userAgent = navigator.userAgent || navigator.vendor || (window as any)['opera'];
+    console.log(userAgent);
+    // Windows Phone must come first because its UA also contains "Android"
+    if (/android/i.test(userAgent)) {
+        this.app();
+    } else if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
+      // iOS detection from: http://stackoverflow.com/a/9039885/177710
+        this.ios();
+    } else {
+      this.show2Buttons = true;
+    }
+  }
 }

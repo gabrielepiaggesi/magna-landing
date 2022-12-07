@@ -120,6 +120,9 @@
 .fWrap {
     flex-wrap: wrap;
 }
+.fNoWrap {
+    flex-wrap: nowrap;
+}
 .fBold {
     font-weight: bold;
 }
@@ -202,6 +205,9 @@ textarea {
 }
 .h100 {
     height: 100%;
+}
+.hM100 {
+    min-height: 100%;
 }
 .bgrW {
     background-color: white;
@@ -387,6 +393,12 @@ button {
     text-align: center;
 }
 
+.btnScarica {
+    font-size: 17px;
+    font-weight: 600;
+    text-align: center;
+}
+
 button:disabled {
     opacity: 0.7 !important;
     cursor: not-allowed !important;
@@ -542,6 +554,9 @@ select {
 .crG {
     color: #455065;;
 }
+.crB {
+    color: black;;
+}
 
 .crW {
     color: white;;
@@ -585,3 +600,33 @@ select {
     animation: s3 1s infinite linear;
   }
   @keyframes s3 {to{transform: rotate(1turn)}}
+
+
+.ffG {
+    font-family: 'Figtree', sans-serif;
+}
+.ffGb {
+    font-family: "Gotham-Bold";
+}
+.ffGl {
+    font-family: "Gotham-Light";
+}
+.ffGt {
+    font-family: "Gotham-Thin";
+}
+.ffGm {
+    font-family: "Gotham-Medium";
+}
+
+.op6 {
+    opacity: 0.6;
+}
+
+
+/* font-family: 'Gotham', sans-serif;
+font-family: 'Gotham Black', sans-serif;
+font-family: 'Gotham Light', sans-serif;
+font-family: 'Gotham Thin', sans-serif;
+font-family: 'Gotham XLight', sans-serif;
+font-family: 'Gotham Book', sans-serif;
+font-family: 'Gotham Ultra', sans-serif; */

@@ -38,6 +38,10 @@ export class QrMenuComponent implements OnInit {
     this.route.navigateByUrl('share/' + this.businessId);
   }
 
+  public mail() {
+    window.open('mailto:comebackwebapp@gmail.com?subject=VOGLIO%20COMEBACK%20%2F%20ASSISTENZA', 'blank');
+  }
+
   public leaveComment() {
     this.route.navigateByUrl('comment/' + this.businessId);
   }
@@ -45,14 +49,24 @@ export class QrMenuComponent implements OnInit {
   public async getBusinessInfo() {
     console.log("getRoom");
     this.business = await this.server.getBusinessInfo(this.businessId)
-      .then((response: any) => response)
+      .then((response: any) => {
+        if (response.name) document.title = response.name + ' - Menù';
+        return response;
+      })
       .catch((error: any) => this.generalError(error));
   }
 
   public async getMenus() {
     console.log("getRoom");
     this.menus = await this.server.getBusinessMenuList(this.businessId)
-      .then((response: any) => response)
+      .then((response: any) => {
+        if (response && response.length == 1) {
+          const menu = response[0];
+          const eventTarget = { value: menu.id };
+          this.getMenu(eventTarget);
+        }
+        return response;
+      })
       .catch((error: any) => this.generalError(error));
   }
 

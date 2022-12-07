@@ -3,16 +3,16 @@
 
     <ng-container *ngIf="(card$ | async) as card">
         <h3 class="businessName">{{card.business_name}}</h3>
-        <!-- <button 
+        <button 
             *ngIf="card?.business_menu_link" 
-            (click)="open(card?.business_menu_link)" 
+            (click)="menu(card?.business_menu_link)" 
             class="w100 br10 btn1 bgrW boxSha pad15 brN w100 crG"
         >
             {{ (tr?.menu || 'leggi il menù') }}
-        </button> -->
-        <a *ngIf="card?.business_menu_link" class="w100 br10 btn1 bgrW boxSha pad15 brN w100 crG" style="text-decoration: none !important;" target="_blank" [href]="card?.business_menu_link">{{ (tr?.menu || 'leggi il menù') }}</a>
+        </button>
+        <!-- <a *ngIf="card?.business_menu_link" class="w100 br10 btn1 bgrW boxSha pad15 brN w100 crG" style="text-decoration: none !important;" target="_blank" [href]="card?.business_menu_link">{{ (tr?.menu || 'leggi il menù') }}</a> -->
         <ng-container *ngIf="card?.discount_amount">
-            <div class="flex fColumn bgrR br10 pad15 boxSha gap5">
+            <div (click)="clickCard()" class="flex fColumn bgrR br10 pad15 boxSha gap5">
                 <p style="font-size: 1.37em;">
                     <strong>
                         {{ (tr?.discount || 'Ricevi uno SCONTO di ') }}
@@ -26,7 +26,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="!card?.discount_amount">
-            <div class="flex fColumn bgrR br10 pad15 boxSha">
+            <div (click)="clickCard()" class="flex fColumn bgrR br10 pad15 boxSha">
                 <h3 class="fw5">
                     <strong>
                         {{card?.slogan || 'PASTO GRATIS!'}}
@@ -35,7 +35,7 @@
                 </h3>
             </div>
         </ng-container>
-        <app-card (click)="clickCard()" [fidelity]="card" [lang]="lang"></app-card>
+        <app-card (click)="clickCard()" [fidelity]="card" origin="landing" [lang]="lang"></app-card>
         <div class="flex fColumn bgrGG br10 pad15 boxSha">
             <h3>{{ (tr?.wantCard || 'Vuoi questa Carta Fedeltà ?') }}</h3>
             <ol style="padding-inline-start: 20px;">

@@ -1,10 +1,18 @@
 .fidBox {
     background: #455065;
-    box-shadow: 0px 0px 4px 0.5px rgba(0, 0, 0, 0.25);
+    // box-shadow: 0px 0px 4px 0.5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 2px 20px rgb(0 0 0 / 10%);
     border-radius: 10px;
     color: white;
-    min-height: 190px;
+    // min-height: 150px;
+    // min-height: 190px;
     padding-bottom: 20px;
+}
+.min190 {
+    min-height: 190px;
+}
+.min150 {
+    min-height: 150px;
 }
 .dashedBoRight {
     border-right: 2px dashed white;

@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(public appService: AppService, public router: Router) {
     const token = localStorage.getItem('MagnaToken');
     if (!!token) this.appService.setToken(token);
-    this.autoValidate(window.location.href);
+    window.location.href.includes('?') && this.autoValidate(window.location.href);
     this.findToken(window.location.href);
   }
 
@@ -27,9 +27,26 @@ export class AppComponent {
       
       const businessId = +qrObj.businessId;
       this.appService.businessId = businessId;
-      if (businessId) this.router.navigateByUrl('business/'+businessId);
+      if (qrObj.go && qrObj.go == 'landing' && businessId) {
+        console.log('redirect landing');
+        // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        if (businessId == 7) {
+          this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        } else {
+          this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
+        }
+      } else if (businessId) {
+        console.log('redirect business');
+        if (businessId == 7) {
+          this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
+        } else {
+          this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        }
+      } else {
+        console.log('no redirect');
+      }
     } catch(e) {
-      console.error(e);
+      console.log(e);
     }
   }
 
@@ -41,7 +58,7 @@ export class AppComponent {
       if (!qrObj.token) return;
       this.appService.setToken(qrObj.token);
     } catch(e) {
-      console.error(e);
+      console.log(e);
     }
   }
 }

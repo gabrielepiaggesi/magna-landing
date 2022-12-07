@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 
 @Component({
@@ -8,10 +9,53 @@ import { AppService } from '../app.service';
 })
 export class HomeComponent implements OnInit {
   public businessId: number = 2;
+  public redirect = false;
 
-  constructor(public appService: AppService) { }
+  constructor(public appService: AppService, public router: Router) {
+    this.redirect = true;
+    window.location.href.includes('?') && this.autoValidate(window.location.href);
+  }
 
   ngOnInit(): void {
+  }
+
+  public autoValidate(businessUrl: string) {
+    try {
+      var search = new URL(businessUrl).search.substring(1);
+      const qrObj = JSON.parse('{"' + decodeURI(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g,'":"') + '"}');
+      console.log(qrObj);
+      if (!qrObj.businessId) return;
+      if (isNaN(qrObj.businessId)) return;
+      
+      console.log(this.appService.businessId, +qrObj.businessId);
+      
+      const businessId = this.appService.businessId || +qrObj.businessId;
+      this.appService.businessId = businessId;
+      if (qrObj.go && qrObj.go == 'landing' && businessId) {
+        this.redirect = true;
+        console.log('redirect landing');
+        // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        if (businessId == 7) {
+          this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        } else {
+          this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
+        }
+      } else if (businessId) {
+        this.redirect = true;
+        console.log('redirect business');
+        if (businessId == 7) {
+          this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
+        } else {
+          this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        }
+      } else {
+        this.redirect = false;
+        console.log('no redirect');
+      }
+    } catch(e) {
+      this.redirect = false;
+      console.log(e);
+    }
   }
 
   public ios() {

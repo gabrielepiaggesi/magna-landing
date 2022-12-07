@@ -8,6 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class CardComponent implements OnInit {
   public _fidelity!: any;
   @Input() discountPresent: boolean = false;
+  @Input() showBio: boolean = true;
   @Input() lang!: string;
   @Input() set fidelity(fid: any) {
     this._fidelity = fid;

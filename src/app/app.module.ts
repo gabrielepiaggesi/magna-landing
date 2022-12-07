@@ -15,6 +15,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { QrMenuComponent } from './qr-menu/qr-menu.component';
 import { InsightComponent } from './insight/insight.component';
 import { UserBusinessComponent } from './user-business/user-business.component';
+import { BusinessComponent } from './business/business.component';
+import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
+import { WinnerComponent } from './winner/winner.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { UserBusinessComponent } from './user-business/user-business.component';
     MenuComponent,
     QrMenuComponent,
     InsightComponent,
-    UserBusinessComponent
+    UserBusinessComponent,
+    BusinessComponent,
+    FidelityCardComponent,
+    WinnerComponent
   ],
   imports: [
     BrowserModule,

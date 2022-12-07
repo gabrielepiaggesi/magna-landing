@@ -1,5 +1,5 @@
 .container {
-    color: #484848;
+    // color: #484848;
     // padding: 0 10px;
 
     div {
@@ -8,6 +8,8 @@
     span {
         display: block;
     }
+
+    // border-bottom: 1px solid #e4e4e4;
 
     .header {
         display: flex;
@@ -63,12 +65,12 @@
     }
 
     .menu {
-        margin: 0 10px;
+        // margin: 0 10px;
         padding: 25px 10px;
         // border: 1px solid #E0E0E0;
         border-radius: 10px;
-        margin-top: 21px;
-        margin-bottom: 0;
+        // margin-top: 21px;
+        // margin-bottom: 0;
         background-color: white;
 
         .title {
@@ -79,11 +81,13 @@
             text-align: center;
         }
         .item {
-            margin-top: 34px;
+            // margin-top: 34px;
             display: flex;
             flex-direction: row;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 1px solid #e4e4e4;
+            padding: 17px 0;
             .detail {
                 max-width: 80%;
             }
@@ -98,6 +102,9 @@
                 opacity: 0.6;
             }
         }
+        .no-border-bottom {
+            border-bottom: none !important;
+        }
     }
 
 }
@@ -106,14 +113,14 @@
     border: 1px solid #E0E0E0
 }
 select {
-    margin: 0 10px;
-    padding: 25px;
+    // margin: 0 10px;
+    padding: 15px;
     // border: 1px solid #E0E0E0;
     border-radius: 10px;
-    margin-top: 21px;
+    // margin-top: 21px;
     margin-bottom: 0;
     width: -webkit-fill-available;
-    font-size: 21px;
+    font-size: 18px;
     text-align: center;
     outline: none;
     background: white !important;
@@ -121,4 +128,53 @@ select {
     -moz-appearance:none; /* Firefox */
     -webkit-appearance:none; /* Safari and Chrome */
     appearance:none;
+    border: none !important;
+}
+
+
+.gl {
+    overflow-x: hidden;
+
+    .logo {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        width: 32px;
+        height: 32px;
+        border-radius: 7px;
+    }
+    img {
+        object-fit: cover;
+    }
+    .overlay {
+        z-index: 1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 170px;
+        width: 100%;
+        background: linear-gradient(180deg,rgba(0,0,0,.64) 12.77%,hsla(0,0%,76.9%,0) 79.04%);
+    }
+    .boxShaGL {
+        box-shadow: 0 2px 20px rgb(0 0 0 / 10%);
+    }
+    h1 {
+        font-size: 20px;
+    }
+    p {
+        font-size: 16px;
+    }
+    h2 {
+        font-size: 16px;
+    }
+    .arrow {
+        position: absolute;
+        bottom: -14px;
+        right: -20px;
+    }
+    .gift {
+        background-color: #FFC244FF;
+        background-image: url('./../../assets/gift-back.svg');
+    }
 }
