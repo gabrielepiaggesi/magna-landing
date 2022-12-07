@@ -43,19 +43,19 @@
     <img class="w100" style="z-index: 0;" height="170" [src]="card.image_url ? card.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
     <div style="z-index: 1;" class="overlay"></div>
     <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -130px; z-index: 2;">
-        <div (click)="clickCard()" class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift mT20" style="min-height: 110px;">
+        <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift mT20" style="min-height: 110px;">
             <div class="flex fColumn gap15 f1" style="padding-right: 0px;">
                 <ng-container *ngIf="card?.discount_amount">
-                    <h2 class="ffG" style="font-size: 21px;">
+                    <h2 class="ffG" (click)="clickCard()" style="font-size: 21px;">
                         {{ (tr?.discount || 'Guadagna uno SCONTO di ') }}
                         {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }} !
                     </h2>
                 </ng-container>
-                <ng-container *ngIf="!card?.discount_amount">
+                <ng-container (click)="clickCard()" *ngIf="!card?.discount_amount">
                     <h2 class="ffG" style="font-size: 21px;">{{card?.slogan || 'PASTO GRATIS!'}}</h2>
                 </ng-container>
-                <p *ngIf="!card.card_description" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
-                <p *ngIf="card.card_description" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>
+                <p *ngIf="!card.card_description" (click)="clickCard()" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
+                <p *ngIf="card.card_description" (click)="clickCard()" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>
                 
                 <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100" (click)="download()" style="border: none;"><i class="fa-solid fa-download"></i>&nbsp;
                     {{ (tr?.ios || "Scarica l'app") }}
@@ -79,6 +79,7 @@
         {{ (tr?.menu || 'SCOPRI IL NOSTRO MENU') }}
         </button>
         <!-- <app-card (click)="clickCard()" [showBio]="false" [fidelity]="card" [lang]="lang"></app-card> -->
+        <img src="../../assets/laBonoraCocktail.jpg" class="br10 w100 boxShaGL" alt="">
 
         <div class="flex fColumn bgrW br10 pad15 boxShaGL gap15">
             <h2 class="ffG" style="font-size: 18px;">{{ (tr?.wantCard || 'Vuoi questa Carta Fedeltà ?') }}</h2>
