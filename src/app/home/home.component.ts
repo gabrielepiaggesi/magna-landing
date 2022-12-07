@@ -31,7 +31,9 @@ export class HomeComponent implements OnInit {
       
       const businessId = this.appService.businessId || +qrObj.businessId;
       this.appService.businessId = businessId;
-      if (qrObj.go && qrObj.go == 'landing' && businessId) {
+      if (businessId == 11) {
+        this.router.navigateByUrl('locale/'+businessId, {replaceUrl: true});
+      } else if (qrObj.go && qrObj.go == 'landing' && businessId) {
         this.redirect = true;
         console.log('redirect landing');
         // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});

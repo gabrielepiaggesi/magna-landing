@@ -27,7 +27,9 @@ export class AppComponent {
       
       const businessId = +qrObj.businessId;
       this.appService.businessId = businessId;
-      if (qrObj.go && qrObj.go == 'landing' && businessId) {
+      if (businessId == 11) {
+        this.router.navigateByUrl('locale/'+businessId, {replaceUrl: true});
+      } else if (qrObj.go && qrObj.go == 'landing' && businessId) {
         console.log('redirect landing');
         // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
         if (businessId == 7) {

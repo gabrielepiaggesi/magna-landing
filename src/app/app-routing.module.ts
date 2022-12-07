@@ -5,6 +5,7 @@ import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
 import { HomeComponent } from './home/home.component';
 import { InsightComponent } from './insight/insight.component';
 import { LandingComponent } from './landing/landing.component';
+import { LocaleComponent } from './locale/locale.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { QrMenuComponent } from './qr-menu/qr-menu.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
   {
     path: 'business/:businessId',
     component: BusinessComponent
+  },
+  {
+    path: 'locale/:businessId',
+    component: LocaleComponent
   },
   {
     path: 'landing/:businessId',

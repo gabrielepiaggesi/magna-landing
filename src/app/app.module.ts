@@ -18,6 +18,7 @@ import { UserBusinessComponent } from './user-business/user-business.component';
 import { BusinessComponent } from './business/business.component';
 import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
 import { WinnerComponent } from './winner/winner.component';
+import { LocaleComponent } from './locale/locale.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { WinnerComponent } from './winner/winner.component';
     UserBusinessComponent,
     BusinessComponent,
     FidelityCardComponent,
-    WinnerComponent
+    WinnerComponent,
+    LocaleComponent
   ],
   imports: [
     BrowserModule,
