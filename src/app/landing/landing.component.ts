@@ -129,15 +129,30 @@ export class LandingComponent implements OnInit {
     window.open('mailto:comebackwebapp@gmail.com?subject=VOGLIO%20COMEBACK%20%2F%20ASSISTENZA', 'blank');
   }
 
-  public app() {
+  public huaweiXiaomi() {
     try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App');
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
     } catch(e) {
       console.log(e);
     }
-    // window.open('https://play.google.com/store/apps/details?id=com.comeback.card&gl=IT', '_system');
-    window.open('market://details?id=com.comeback.card', '_system');
+    window.open('https://play.google.com/store/apps/details?id=com.comeback.card&gl=IT', '_system');
+  }
+
+  public app() {
+    let userAgent = navigator.userAgent || navigator.vendor || (window as any)['opera'];
+    if (/huawei/i.test(userAgent) || /HUAWEI/i.test(userAgent) || /xiaomi/i.test(userAgent) || /XIAOMI/i.test(userAgent) || userAgent.indexOf(" Mi ") != -1) {
+      this.huaweiXiaomi();
+    } else {
+      try {
+        !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App Vecchia');
+        !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
+      } catch(e) {
+        console.log(e);
+      }
+      // window.open('https://play.google.com/store/apps/details?id=com.comeback.card&gl=IT', '_system');
+      window.open('market://details?id=com.comeback.card', '_system');
+    }
   }
   
   // public open(link: string) {

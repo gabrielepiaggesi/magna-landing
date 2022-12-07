@@ -176,12 +176,24 @@ export class LocaleComponent implements OnInit {
     this.router.navigateByUrl('fidelity-card/'+this.businessId);
   }
 
+  public huaweiXiaomi() {
+    try {
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
+    } catch(e) {
+      console.log(e);
+    }
+    window.open('https://play.google.com/store/apps/details?id=com.comeback.card&gl=IT', '_system');
+  }
+
   download() {
 
    let userAgent = navigator.userAgent || navigator.vendor || (window as any)['opera'];
     console.log(userAgent);
     // Windows Phone must come first because its UA also contains "Android"
-    if (/android/i.test(userAgent)) {
+    if (/huawei/i.test(userAgent) || /HUAWEI/i.test(userAgent) || /xiaomi/i.test(userAgent) || /XIAOMI/i.test(userAgent) || userAgent.indexOf(" Mi ") != -1) {
+      this.huaweiXiaomi();
+    } else if (/android/i.test(userAgent)) {
         this.app();
     } else if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
       // iOS detection from: http://stackoverflow.com/a/9039885/177710
