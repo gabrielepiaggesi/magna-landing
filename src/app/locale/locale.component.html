@@ -56,6 +56,18 @@
                 </ng-container>
                 <p *ngIf="!card.card_description" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
                 <p *ngIf="card.card_description" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>
+                
+                <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100" (click)="download()"><i class="fa-solid fa-download"></i>&nbsp;
+                    {{ (tr?.ios || "Scarica l'app") }}
+                </button>
+                <div *ngIf="!!show2Buttons" class="flex fRow jBet gap20 aCenter textCenter">
+                    <button class="br10 pad10 btnScarica bgrGG ffG" (click)="ios()"><i class="fa-brands fa-apple"></i>&nbsp;
+                        {{ (tr?.iphone || 'Scarica per iPhone') }}
+                    </button>
+                    <button class="br10 pad10 btnScarica bgrGG ffG" (click)="app()"><i class="fa-brands fa-android"></i>&nbsp;
+                        {{ (tr?.android || 'Scarica per Android') }}
+                    </button>
+                </div>
             </div>
             <!-- <img width="40" height="40" style="border-radius: 7px;" src="assets/gift.png" alt=""> -->
         </div>
