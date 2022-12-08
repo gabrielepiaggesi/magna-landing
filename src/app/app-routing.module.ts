@@ -9,6 +9,7 @@ import { LocaleComponent } from './locale/locale.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { MenuComponent } from './menu/menu.component';
 import { QrMenuComponent } from './qr-menu/qr-menu.component';
+import { QrComponent } from './qr/qr.component';
 import { ReferralComponent } from './referral/referral.component';
 import { UserBusinessComponent } from './user-business/user-business.component';
 import { WinnerComponent } from './winner/winner.component';
@@ -25,6 +26,10 @@ const routes: Routes = [
   {
     path: 'locale/:businessId',
     component: LocaleComponent
+  },
+  {
+    path: 'qr/:businessId',
+    component: QrComponent
   },
   {
     path: 'landing/:businessId',

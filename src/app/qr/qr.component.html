@@ -39,37 +39,41 @@
 
 <div *ngIf="!!loading" class="spinner mAuto"></div>
 <div class="gl flex fColumn w100 hM100" *ngIf="(card$ | async) as card">
-    <img class="logo" style="z-index: 2;" src="assets/cbLogo.png" alt="">
+    <div class="flex fRow aCenter logoBox gap10" style="z-index: 2;">
+        <img class="logo" src="assets/cbLogo.png" alt="">
+        <span class="ffG" style="font-size: 17px;">{{ card.business_name }}</span>
+    </div>
     <img class="w100" style="z-index: 0;" height="170" [src]="card.image_url ? card.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
     <div style="z-index: 1;" class="overlay"></div>
-    <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -130px; z-index: 2;">
-        <button 
-            *ngIf="card.business_menu_link && card.business_id == 11" 
-            (click)="menu(card.business_menu_link)"
-            class="ffG w100 br10 btn1 bgrW boxShaGL pad15 brN w100 crB mT20"
-        >
-        {{ (tr?.menu || 'leggi il menù') }}
-        </button>
-        <div (click)="clickCard()" class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift anim" style="min-height: 110px;" [ngClass]="{ 'mT20': card.business_id != 11 }">
-            <div class="flex fColumn gap15 f1" style="padding-right: 0px;">
+    <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -100px; z-index: 2;">
+        <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift anim mT20" style="min-height: 110px;" (click)="clickCard()" [ngClass]="{ 'mT40': !card?.business_menu_link }">
+            <div class="overlay2 op3 br10"></div>
+            <div class="flex fColumn gap15 f1" style="padding-right: 0px; z-index: 2;">
                 <ng-container *ngIf="card?.discount_amount">
-                    <h2 class="ffG" style="font-size: 23px;">
+                    <h2 class="ffG" style="font-size: 21px;">
                         {{ (tr?.discount || 'Ricevi uno SCONTO di ') }}
                         {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }} !
                     </h2>
                 </ng-container>
                 <ng-container *ngIf="!card?.discount_amount">
-                    <h2 class="ffG" style="font-size: 23px;">{{card?.slogan || 'PASTO GRATIS!'}}</h2>
+                    <h2 class="ffG" style="font-size: 21px;">{{card?.slogan || 'PASTO GRATIS!'}}</h2>
                 </ng-container>
-                <p *ngIf="!card.card_description" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
-                <p *ngIf="card.card_description" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>
+                <p *ngIf="businessId == 11" class="ffG" style="font-size: 17px;">Ogni 5 volte che vieni avrai diritto a <strong>uno sconto di 10€</strong>.</p>
+                <ng-container *ngIf="businessId != 11">
+                    <p *ngIf="!card.card_description" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
+                    <p *ngIf="card.card_description" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>    
+                </ng-container>
+                <div class="flex fRow aCenter jBet">
+                    <div class="br10 bgrR" style="padding: 5px 10px; width: fit-content;">
+                        <h4 style="display: inline;" class="ffG">Solo 7 rimaste</h4>
+                    </div>
+                </div>
             </div>
-            <!-- <img width="40" height="40" style="border-radius: 7px;" src="assets/gift.png" alt=""> -->
         </div>
-        <app-card (click)="clickCard()" [showBio]="false" [fidelity]="card" [lang]="lang"></app-card>
+        <!-- <app-card (click)="clickCard()" [showBio]="false" [fidelity]="card" [lang]="lang"></app-card> -->
 
         <div class="flex fColumn bgrW br10 pad15 boxShaGL gap15">
-            <h2 class="ffG" style="font-size: 18px;">{{ (tr?.wantCard || 'Vuoi questa Carta Fedeltà ?') }}</h2>
+            <h2 class="ffG" style="font-size: 18px;">{{ (tr?.wantCard || 'Vuoi la nostra Carta Fedeltà ?') }}</h2>
             <!-- <p class="ffG mB15">{{ (tr?.downloadApp || "Scarica l'app COMEBACK, entra, clicca sul "+" e scrivi il codice locale ") }}"{{card.business_id}}".</p> -->
             <ol style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
                 <li class="ffG" (click)="download()" style="text-decoration: underline;">{{ (tr?.downloadApp || "Scarica l'app COMEBACK") }}</li>
@@ -99,7 +103,7 @@
             <!-- <small class="mT20">{{card?.business_name}} {{ (tr?.info || 'usa COMEBACK per le carte fedeltà dei suoi clienti.') }}</small> -->
         </div>
 
-        <p *ngIf="card.business_menu_link && card.business_id != 11" class="ffG w100 crB ffG pad10 textCenter" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">{{ (tr?.menu || 'leggi il menù') }}</p>
+        <p *ngIf="card.business_menu_link" class="ffG w100 crB ffG pad10 textCenter" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">{{ (tr?.menu || 'leggi il menù') }}</p>
     </div>
     <div class="footer flex fColumn pad15 bgrWl gap10 mT40">
         <small class="w100 textCenter crB ffG pad10" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>

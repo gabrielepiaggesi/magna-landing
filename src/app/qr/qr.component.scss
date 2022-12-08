@@ -49,11 +49,12 @@ li {
 
 .gl {
     overflow-x: hidden;
-
-    .logo {
+    .logoBox {
         position: absolute;
         top: 15px;
         left: 15px;
+    }
+    .logo {
         width: 32px;
         height: 32px;
         border-radius: 7px;
@@ -107,4 +108,23 @@ li {
 .anim {
     animation: wiggle 2s linear infinite;
     animation-iteration-count: 2;
+}
+
+.badgeWinner {
+    position: absolute;
+    top: -15px;
+    right: -5px;
+}
+
+.op3 {
+    opacity: 0.3;
+}
+.op4 {
+    opacity: 0.4;
+}
+.op5 {
+    opacity: 0.5;
+}
+.op6 {
+    opacity: 0.6;
 }

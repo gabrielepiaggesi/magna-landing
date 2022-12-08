@@ -19,6 +19,7 @@ import { BusinessComponent } from './business/business.component';
 import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
 import { WinnerComponent } from './winner/winner.component';
 import { LocaleComponent } from './locale/locale.component';
+import { QrComponent } from './qr/qr.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { LocaleComponent } from './locale/locale.component';
     BusinessComponent,
     FidelityCardComponent,
     WinnerComponent,
-    LocaleComponent
+    LocaleComponent,
+    QrComponent
   ],
   imports: [
     BrowserModule,
