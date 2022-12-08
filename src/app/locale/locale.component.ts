@@ -38,7 +38,7 @@ export class LocaleComponent implements OnInit {
     menu: 'SCOPRI IL NOSTRO MENU',
     discount: 'Guadagna uno SCONTO di ',
     withCard: 'Con la carta fedeltà digitale di ',
-    wantCard: 'Vuoi questa Carta Fedeltà ?',
+    wantCard: 'Vuoi la nostra Carta Fedeltà ?',
     downloadApp: "Scarica l'app COMEBACK",
     downloadApp2: `Scarica l'app COMEBACK, entra, clicca sul "+" e scrivi il codice locale `,
     enter: 'Entra, clicca sul "+", e scrivi il codice locale ',
