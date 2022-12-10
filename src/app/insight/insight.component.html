@@ -63,7 +63,7 @@
     <div *ngFor="let card of cardsByBusiness" class="flex fRow w100 aCenter">
         <div class="flex fColumn f1 gap5 aCenter">
             <p class="f1 textCenter">{{card.total}}</p>
-            <small>Carte Locale {{card.business_id}}</small>
+            <small>C. Locale {{card.business_id}} - {{card.activeFrom}} Days</small>
         </div>
         <div class="flex fColumn f1 gap5 aCenter">
             <p class="f1 textCenter">{{card.today}}</p>

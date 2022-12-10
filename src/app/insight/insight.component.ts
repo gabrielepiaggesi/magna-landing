@@ -13,7 +13,7 @@ export class InsightComponent implements OnInit {
   public cards$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public newTodayCards$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public scannedTodayCards$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  public cardsByBusiness$: BehaviorSubject<{business_id: number, total: number, cards: any[], today: number}[]> = new BehaviorSubject<{business_id: number, total: number, cards: any[], today: number}[]>([]);
+  public cardsByBusiness$: BehaviorSubject<{business_id: number, total: number, cards: any[], today: number, activeFrom?: number}[]> = new BehaviorSubject<{business_id: number, total: number, cards: any[], today: number, activeFrom?: number}[]>([]);
   public todayUsers$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reservations$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reservationsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -41,13 +41,25 @@ export class InsightComponent implements OnInit {
       const totalCards = cardsData.totalCards;
       let cardsByBusiness = cardsData.cardsByBusiness;
       cardsByBusiness = cardsByBusiness.map((carB: any) => {
+        let businessesCards = carB.cards.sort((a: any, b: any) => a.id-b.id);
+        let activeFrom = businessesCards.length ? businessesCards[0].created_at : null;
+        if (activeFrom) {
+          const today = new Date(Date.now());
+          const activeFromDate = new Date(activeFrom);
+          const timeInMilisec = today.getTime() - activeFromDate.getTime();
+          const diffInDays = Math.ceil(timeInMilisec / (1000 * 60 * 60 * 24));
+          activeFrom = diffInDays;
+        }
         let newC = {
           ...carB,
-          today: 0
+          today: 0,
+          activeFrom
         };
         newC.today = carB.cards.filter((card: any) => card.created_at && card.created_at.startsWith(today)).length;
         return newC;
       });
+      console.log(cardsByBusiness);
+      
       let newTodayCards = [];
       let scannedTodayCards = [];
       let allCards: any[] = [];
