@@ -27,13 +27,13 @@ export class AppComponent {
       
       const businessId = +qrObj.businessId;
       this.appService.businessId = businessId;
-      if (businessId == 11) {
-        this.router.navigateByUrl('locale/'+businessId, {replaceUrl: true});
-      } else if (qrObj.go && qrObj.go == 'landing' && businessId) {
+      if (qrObj.go && qrObj.go == 'landing' && businessId) {
         console.log('redirect landing');
         // this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
         if (businessId == 7) {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        } else if (businessId == 11) {
+          this.router.navigateByUrl('qr/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
         }
@@ -42,6 +42,8 @@ export class AppComponent {
         // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
         if (businessId == 7) {
           this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
+        } else if (businessId == 11) {
+          this.router.navigateByUrl('locale/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
         }
