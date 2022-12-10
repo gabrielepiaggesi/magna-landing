@@ -36,21 +36,21 @@ export class HomeComponent implements OnInit {
       } else if (qrObj.go && qrObj.go == 'landing' && businessId) {
         this.redirect = true;
         console.log('redirect landing');
-        this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
-        // if (businessId == 7) {
-        //   this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
-        // } else {
-        //   this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
-        // }
+        // this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
+        if (businessId == 7) {
+          this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        } else {
+          this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
+        }
       } else if (businessId) {
         this.redirect = true;
         console.log('redirect business');
-        this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
-        // if (businessId == 7) {
-        //   this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
-        // } else {
-        //   this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
-        // }
+        // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        if (businessId == 7) {
+          this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
+        } else {
+          this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
+        }
       } else {
         this.redirect = false;
         console.log('no redirect');
