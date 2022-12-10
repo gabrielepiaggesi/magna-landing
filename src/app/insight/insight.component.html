@@ -1,73 +1,90 @@
-<div class="flex fColumn gap40 pad20 crG mT40">
-    <div class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(users$ | async)}}</p>
-            <small>Utenti</small>
-        </div>
-        <div class="flex f1 fColumn gap5 aCenter">
-            <p class="f1 textCenter">{{(todayUsers$ | async)}}</p>
-            <small>Ut. Oggi</small>
+<div class="flex fColumn gap40 pad20 crG">
+    <div class="flex fColumn pad20 br10 gap10 br1B">
+        <h4 class="textCenter">App Info</h4>
+        <div class="flex fColumn gap40">
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(users$ | async)}}</p>
+                    <small>Users</small>
+                </div>
+                <div class="flex f1 fColumn gap5 aCenter">
+                    <p class="f1 textCenter">{{(todayUsers$ | async)}}</p>
+                    <small>Today Users</small>
+                </div>
+            </div>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(cards$ | async)}}</p>
+                    <small>Cards</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(newTodayCards$ | async)}}</p>
+                    <small>Today Cards</small>
+                </div>
+            </div>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{getCardsOnUsers()}}</p>
+                    <small>Cards per User</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(scannedTodayCards$ | async)}}</p>
+                    <small>Today Scans</small>
+                </div>
+            </div>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(reservations$ | async)}}</p>
+                    <small>Reserv.</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(reservationsToday$ | async)}}</p>
+                    <small>Today Res.</small>
+                </div>
+            </div>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(reviews$ | async)}}</p>
+                    <small>Reviews</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{(reviewsToday$ | async)}}</p>
+                    <small>Today Rev.</small>
+                </div>
+            </div>
         </div>
     </div>
-    <div class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(cards$ | async)}}</p>
-            <small>Carte</small>
-        </div>
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(newTodayCards$ | async)}}</p>
-            <small>C. Oggi</small>
-        </div>
-    </div>
-    <div class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{getCardsOnUsers()}}</p>
-            <small>CPU</small>
-        </div>
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(scannedTodayCards$ | async)}}</p>
-            <small>Scan Oggi</small>
-        </div>
-    </div>
-    <div class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(reservations$ | async)}}</p>
-            <small>Prenot.</small>
-        </div>
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(reservationsToday$ | async)}}</p>
-            <small>Pre. Oggi</small>
-        </div>
-    </div>
-    <div class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(reviews$ | async)}}</p>
-            <small>Reviews</small>
-        </div>
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{(reviewsToday$ | async)}}</p>
-            <small>Rev. Oggi</small>
-        </div>
-    </div>
-</div>
 
-
-
-<div class="flex fColumn gap40 pad20 crG mT40" *ngIf="(cardsByBusiness$ | async) as cardsByBusiness">
-    <div class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{cardsByBusiness.length}}</p>
-            <small>Totale Locali</small>
+    <ng-container *ngIf="(cardsByBusiness$ | async) as cardsByBusiness">
+        <div class="flex fColumn pad20 br10 gap10 br1B">
+            <h4 class="textCenter">Businesses Info</h4>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{cardsByBusiness.length}}</p>
+                    <small>Total Businesses</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter" *ngIf="(cards$ | async) as cards">
+                    <p class="f1 textCenter">{{getCardsAvg(cards, cardsByBusiness.length)}}</p>
+                    <small>Avg Cards</small>
+                </div>
+            </div>
         </div>
-    </div>
-    <div *ngFor="let card of cardsByBusiness" class="flex fRow w100 aCenter">
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{card.total}}</p>
-            <small>C. Locale {{card.business_id}} - {{card.activeFrom}} Days</small>
+        <div *ngFor="let card of cardsByBusiness" class="flex fColumn pad20 br10 gap10 br1B">
+            <h4 class="textCenter">Business {{card.business_id}} - from {{card.activeFrom}} Days</h4>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{card.total}}</p>
+                    <small>Total Cards</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{getCardsAvg(card.total, card.activeFrom)}}</p>
+                    <small>Avg per Day</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{card.today}}</p>
+                    <small>Today Cards</small>
+                </div>
+            </div>
         </div>
-        <div class="flex fColumn f1 gap5 aCenter">
-            <p class="f1 textCenter">{{card.today}}</p>
-            <small>C.Oggi Locale {{card.business_id}}</small>
-        </div>
-    </div>
+    </ng-container>
 </div>

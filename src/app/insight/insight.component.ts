@@ -90,4 +90,9 @@ export class InsightComponent implements OnInit {
     const res = (cards / users);
     return isNaN(res) ? 0 : res.toFixed(2);
   }
+
+  public getCardsAvg(total: number, days: number|undefined) {
+    const res = days ? (total / days) : 0;
+    return isNaN(res) ? 0 : res.toFixed(1);
+  }
 }
