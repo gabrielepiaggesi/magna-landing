@@ -43,7 +43,7 @@
     <img class="w100" style="z-index: 0;" height="170" [src]="card.image_url ? card.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
     <div style="z-index: 1;" class="overlay"></div>
     <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -130px; z-index: 2;">
-        <div (click)="clickCard()" class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift anim" style="min-height: 110px;" [ngClass]="{ 'mT20': card.business_id != 11 }">
+        <div (click)="clickCard()" class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift anim mT20" style="min-height: 110px;">
             <div class="flex fColumn gap15 f1" style="padding-right: 0px;">
                 <ng-container *ngIf="card?.discount_amount">
                     <h2 class="ffG" style="font-size: 23px;">
