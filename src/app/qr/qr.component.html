@@ -58,7 +58,17 @@
                 <ng-container *ngIf="!card?.discount_amount">
                     <h2 class="ffG" style="font-size: 21px;">{{card?.slogan || 'PASTO GRATIS!'}}</h2>
                 </ng-container>
-                <p *ngIf="businessId == 11" class="ffG" style="font-size: 17px;">Ogni 5 volte che vieni avrai <strong>uno sconto di 10€. Menù e Prenotazioni prioritarie!</strong></p>
+                <!-- <p *ngIf="businessId == 11" class="ffG" style="font-size: 17px;">Ogni 5 volte che vieni avrai <strong>uno sconto di 10€. Menù e Prenotazioni prioritarie!</strong></p> -->
+                
+                 <ul *ngIf="businessId == 11" style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
+                    <li class="ffG">Sconto di <span style="text-decoration: underline;">10€</span> ogni 5 volte che vieni.</li>
+                    <li class="ffG">Prenotazioni <span style="text-decoration: underline;">prioritarie!</span></li>
+                    <li class="ffG">Menu digitale, anche da casa.</li>
+                    <li class="ffG">Notifiche Eventi.</li>
+                    <li class="ffG">Recensioni/consigli anonimi.</li>
+                </ul>
+                
+                
                 <ng-container *ngIf="businessId != 11">
                     <p *ngIf="!card.card_description" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
                     <p *ngIf="card.card_description" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>    
@@ -74,7 +84,7 @@
 
         <div class="flex fColumn bgrW br10 pad15 boxShaGL gap15">
             <h2 class="ffG" style="font-size: 18px;">{{ (tr?.wantCard || 'Vuoi la nostra Carta Fedeltà ?') }}</h2>
-            <p class="ffG">Scarica l'app COMEBACK, entra, clicca sul "+" e scrivi il codice locale {{card.business_id}}".</p>
+            <p class="ffG">Scarica la famosa app COMEBACK, entra, clicca sul "+" e scrivi il codice locale {{card.business_id}}".</p>
             <!-- <ol style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
                 <li class="ffG" (click)="download()" style="text-decoration: underline;">{{ (tr?.downloadApp || "Scarica l'app COMEBACK") }}</li>
                 <li class="ffG">{{ (tr?.enter || 'Entra, clicca sul "+", e scrivi il codice locale') }} "{{card.business_id}}".</li>
