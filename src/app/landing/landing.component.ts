@@ -65,6 +65,7 @@ export class LandingComponent implements OnInit {
   ngOnInit(): void {
     try {
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('QR Page Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('business_'+this.businessId);
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).gtag('event', 'start_page');
     } catch(e) {
       console.log(e);
@@ -113,6 +114,7 @@ export class LandingComponent implements OnInit {
   public ios() {
     try {
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App Vecchia');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('download_app_'+this.businessId);
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
     } catch(e) {
       console.log(e);
@@ -132,6 +134,7 @@ export class LandingComponent implements OnInit {
   public huaweiXiaomi() {
     try {
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App');
+      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('download_app_'+this.businessId);
       !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
     } catch(e) {
       console.log(e);
@@ -146,6 +149,7 @@ export class LandingComponent implements OnInit {
     } else {
       try {
         !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Download App Vecchia');
+        !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('download_app_'+this.businessId);
         !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).hj('event', 'download_app');
       } catch(e) {
         console.log(e);

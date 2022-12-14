@@ -61,14 +61,14 @@
                 <!-- <p *ngIf="businessId == 11" class="ffG" style="font-size: 17px;">Ogni 5 volte che vieni avrai <strong>uno sconto di 10€. Menù e Prenotazioni prioritarie!</strong></p> -->
                 
                  <ul *ngIf="businessId == 11" style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
-                    <li class="ffG">Sconto di <span style="text-decoration: underline;">10€</span> ogni 5 volte che vieni.</li>
-                    <li class="ffG">Prenotazioni <span style="text-decoration: underline;">prioritarie!</span></li>
+                    <li class="ffG"><span style="text-decoration: underline; font-weight: bold;">Sconto di 10€</span> ogni 5 volte che vieni.</li>
+                    <li class="ffG">Prenotazioni <span style="text-decoration: underline; font-weight: bold;">prioritarie!</span></li>
                     <li class="ffG">Menu digitale, anche da casa.</li>
                     <li class="ffG">Notifiche Eventi e Promozioni.</li>
                     <li class="ffG">Recensioni/consigli anonimi.</li>
                 </ul>
                 
-                <small class="ffG">La Carta funziona tramite l'app Comeback, un'app in uso in tanti altri locali a Roma.</small>
+                <!-- <small class="ffG">La Carta funziona tramite l'app Comeback, un'app in uso in tanti altri locali a Roma.</small> -->
 
                 <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100 brN" (click)="download()"><i class="fa-solid fa-download"></i>&nbsp;
                     {{ (tr?.ios || "Scarica l'app") }}
