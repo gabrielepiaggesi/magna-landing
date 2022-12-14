@@ -92,7 +92,7 @@ export class QrComponent implements OnInit {
           if (this.businessId == 11) {
             card.image_url = '../../assets/laBonoraCocktail.jpg';
             card.discount_amount = 0;
-            card.slogan = "Con la Carta Soci hai:";
+            card.slogan = "Con la Carta Cliente hai:";
             this.tr.wantCard = 'La Vuoi?';
             this.tr.end = 'Menù, Sconti e Prenotazioni, tutto con la nostra carta soci.';
           }

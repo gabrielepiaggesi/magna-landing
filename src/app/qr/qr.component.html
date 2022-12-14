@@ -46,7 +46,7 @@
     <img class="w100" style="z-index: 0;" height="170" [src]="card.image_url ? card.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
     <div style="z-index: 1;" class="overlay"></div>
     <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -100px; z-index: 2;">
-        <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift anim mT20" style="min-height: 110px;" (click)="clickCard()" [ngClass]="{ 'mT40': !card?.business_menu_link }">
+        <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift mT20" style="min-height: 110px;" (click)="clickCard()" [ngClass]="{ 'mT40': !card?.business_menu_link }">
             <div class="overlay2 op3 br10"></div>
             <div class="flex fColumn gap15 f1" style="padding-right: 0px; z-index: 2;">
                 <ng-container *ngIf="card?.discount_amount">
@@ -64,44 +64,34 @@
                     <li class="ffG">Sconto di <span style="text-decoration: underline;">10€</span> ogni 5 volte che vieni.</li>
                     <li class="ffG">Prenotazioni <span style="text-decoration: underline;">prioritarie!</span></li>
                     <li class="ffG">Menu digitale, anche da casa.</li>
-                    <li class="ffG">Notifiche Eventi.</li>
+                    <li class="ffG">Notifiche Eventi e Promozioni.</li>
                     <li class="ffG">Recensioni/consigli anonimi.</li>
                 </ul>
                 
-                
-                <ng-container *ngIf="businessId != 11">
-                    <p *ngIf="!card.card_description" class="ffG mB15" style="font-size: 17px;">{{ (tr?.withCard || 'Con la carta fedeltà digitale di ') }} {{card.business_name}}</p>
-                    <p *ngIf="card.card_description" class="ffG" style="font-size: 17px;">{{card.card_description}}</p>    
-                </ng-container>
-                <div class="flex fRow aCenter jBet">
+                <small class="ffG">La Carta funziona tramite l'app Comeback, un'app in uso in tanti altri locali a Roma.</small>
+
+                <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100" (click)="download()"><i class="fa-solid fa-download"></i>&nbsp;
+                    {{ (tr?.ios || "Scarica l'app") }}
+                </button>
+
+                <!-- <div class="flex fRow aCenter jBet">
                     <div class="br10 bgrR" style="padding: 5px 10px; width: fit-content;">
                         <h4 style="display: inline;" class="ffG">Solo 7 rimaste</h4>
                     </div>
+                </div> -->
+                <div class="br10 bgrR anim" style="padding: 3px 7px; width: fit-content; position: absolute; right: -10px; top: -21px;">
+                    <h5 style="display: inline;" class="ffG">Solo 7 rimaste</h5>
                 </div>
             </div>
         </div>
         <!-- <app-card (click)="clickCard()" [showBio]="false" [fidelity]="card" [lang]="lang"></app-card> -->
 
-        <div class="flex fColumn bgrW br10 pad15 boxShaGL gap15">
+        <!-- <div class="flex fColumn bgrW br10 pad15 boxShaGL gap15">
             <h2 class="ffG" style="font-size: 18px;">{{ (tr?.wantCard || 'Vuoi la nostra Carta Fedeltà ?') }}</h2>
             <p class="ffG">Scarica la famosa app COMEBACK, entra, clicca sul "+" e scrivi il codice locale {{card.business_id}}".</p>
-            <!-- <ol style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
-                <li class="ffG" (click)="download()" style="text-decoration: underline;">{{ (tr?.downloadApp || "Scarica l'app COMEBACK") }}</li>
-                <li class="ffG">{{ (tr?.enter || 'Entra, clicca sul "+", e scrivi il codice locale') }} "{{card.business_id}}".</li>
-                <li class="ffG">{{ (tr?.end || 'Menù, Sconti, Prenotazioni e Recensioni, tutto con la carta!') }}</li>
-            </ol> -->
-            <!-- <div class="flex fRow jBet gap20 aCenter textCenter">
-                <button class="br10 pad10 btnScarica bgrGG" (click)="ios()"><i class="fa-brands fa-apple"></i>&nbsp;
-                    {{ (tr?.ios || 'Scarica per iPhone') }}
-                </button>
-                <button class="br10 pad10 btnScarica bgrGG" (click)="app()"><i class="fa-brands fa-android"></i>&nbsp;
-                    {{ (tr?.android || 'Scarica per Android') }}
-                </button>
-            </div> -->
             <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100" (click)="download()"><i class="fa-solid fa-download"></i>&nbsp;
                 {{ (tr?.ios || "Scarica l'app") }}
             </button>
-
             <div *ngIf="!!show2Buttons" class="flex fRow jBet gap20 aCenter textCenter">
                 <button class="br10 pad10 btnScarica bgrGG ffG" (click)="ios()"><i class="fa-brands fa-apple"></i>&nbsp;
                     {{ (tr?.iphone || 'Scarica per iPhone') }}
@@ -110,13 +100,12 @@
                     {{ (tr?.android || 'Scarica per Android') }}
                 </button>
             </div>
-            <!-- <small class="mT20">{{card?.business_name}} {{ (tr?.info || 'usa COMEBACK per le carte fedeltà dei suoi clienti.') }}</small> -->
-        </div>
+        </div> -->
 
         <p *ngIf="card.business_menu_link" class="ffG w100 crB ffG pad10 textCenter" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">Leggi il menù online</p>
     </div>
-    <div class="footer flex fColumn pad15 bgrWl gap10 mT40">
-        <small class="w100 textCenter crB ffG pad10" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>
+    <div class="footer flex fColumn pad15 bgrWl gap5 mT40">
+        <small class="w100 textCenter crB ffG pad5" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>
         <a class="textCenter w100 crB ffG pad10" style="text-decoration: none !important; font-size: smaller;" target="_blank" href="https://www.freepik.com/free-vector/red-ribbon-bow_1529572.htm#query=gift&position=35&from_view=search&track=sph">Image by macrovector on Freepik</a>
     </div>
 </div>
