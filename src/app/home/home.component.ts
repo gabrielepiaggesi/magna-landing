@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit {
         if (businessId == 7) {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
         } else if (businessId == 11) {
-          this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
+          this.router.navigateByUrl('qr/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
         }
