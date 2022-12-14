@@ -71,14 +71,18 @@
         </div>
         <div *ngFor="let card of cardsByBusiness" class="flex fColumn pad20 br10 gap10 br1B">
             <h4 class="textCenter">Business {{card.business_id}} - from {{card.activeFrom}} Days</h4>
-            <div class="flex fRow w100 aCenter">
+            <div class="flex fRow w100 aCenter mixPanel" *ngIf="(mpData$ | async)">
                 <div class="flex fColumn f1 gap5 aCenter">
                     <p class="f1 textCenter">{{getBusinessVisits(card.business_id)}}</p>
-                    <small>Today Visitors</small>
+                    <small>Visitors</small>
                 </div>
                 <div class="flex fColumn f1 gap5 aCenter">
                     <p class="f1 textCenter">{{getDownload(card.business_id)}}</p>
-                    <small>Today Download</small>
+                    <small>Download</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{getCR(card.business_id)}}<small style="font-size: 18px;">%</small> </p>
+                    <small>CR</small>
                 </div>
             </div>
             <div class="flex fRow w100 aCenter">

@@ -19,7 +19,7 @@ export class InsightComponent implements OnInit {
   public reservationsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reviews$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reviewsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  public mpData$: BehaviorSubject<any> = new BehaviorSubject<any>({});
+  public mpData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
   constructor(public appService: AppService) { }
 
@@ -107,6 +107,15 @@ export class InsightComponent implements OnInit {
     const data = this.mpData$.getValue();
     const today = new Date(Date.now()).toISOString().substring(0, 10);
     return data['download_app_'+id][today];
+  }
+
+  public getCR(id: number) {
+    const data = this.mpData$.getValue();
+    const today = new Date(Date.now()).toISOString().substring(0, 10);
+    const v = data['business_'+id][today];
+    const d = data['download_app_'+id][today];
+    const perc = (d * 100) / v;
+    return perc ? perc.toFixed(0) : 0;
   }
 
   public getCardsOnUsers() {
