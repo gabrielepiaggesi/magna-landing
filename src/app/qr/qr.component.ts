@@ -43,7 +43,7 @@ export class QrComponent implements OnInit {
     downloadApp2: `Scarica l'app COMEBACK, entra, clicca sul "+" e scrivi il codice locale `,
     enter: 'Entra, clicca sul "+", e scrivi il codice locale ',
     end: 'Menù, Sconti e Prenotazioni, tutto con la nostra carta fedeltà.',
-    ios: "Scarica l'app",
+    ios: "Prendi Carta",
     android: 'Scarica per Android',
     iphone: 'Scarica per iPhone',
     info: "usa l'app COMEBACK per le carte fedeltà dei suoi clienti. Basta tesserine di carta che ti perdi.",
@@ -92,8 +92,8 @@ export class QrComponent implements OnInit {
           if (this.businessId == 11) {
             card.image_url = '../../assets/laBonoraCocktail.jpg';
             card.discount_amount = 0;
-            card.slogan = 'La nostra Carta Soci';
-            this.tr.wantCard = 'Vuoi la nostra Carta Soci ?';
+            card.slogan = "La nostra Carta 'Cliente Fedele'";
+            this.tr.wantCard = 'La Vuoi? É digitale...';
             this.tr.end = 'Menù, Sconti e Prenotazioni, tutto con la nostra carta soci.';
           }
           this.card$.next(card);
