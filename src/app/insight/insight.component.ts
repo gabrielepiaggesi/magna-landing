@@ -19,11 +19,13 @@ export class InsightComponent implements OnInit {
   public reservationsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reviews$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reviewsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  public mpData$: BehaviorSubject<any> = new BehaviorSubject<any>({});
 
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
     this.loading = true;
+    // this.getMPData();
     Promise.all([
       this.appService.getTotalUsers(),
       this.appService.getTotalFidelitiesCards(),
@@ -63,9 +65,13 @@ export class InsightComponent implements OnInit {
       let newTodayCards = [];
       let scannedTodayCards = [];
       let allCards: any[] = [];
+      let events: string[] = [];
       cardsByBusiness.forEach((elem: any) => {
         allCards = allCards.concat(elem.cards);
+        events.push('business_'+elem.business_id);
+        events.push('download_app_'+elem.business_id);
       });
+      this.getMPData(events);
       newTodayCards = allCards.filter((card: any) => card.created_at && card.created_at.startsWith(today));
       scannedTodayCards = allCards.filter((card: any) => card.last_scan && card.last_scan.startsWith(today));
 
@@ -82,6 +88,25 @@ export class InsightComponent implements OnInit {
     })
     .catch((e: any) => console.error(e))
     .finally(() => this.loading = false);
+  }
+
+  public getMPData(events: string[]) {
+    this.appService
+        .getMixPanelData(events)
+        .then((res) => this.mpData$.next(res.data?.values))
+        .catch((err) =>console.log(err));
+  }
+
+  public getBusinessVisits(id: number) {
+    const data = this.mpData$.getValue();
+    const today = new Date(Date.now()).toISOString().substring(0, 10);
+    return data['business_'+id][today];
+  }
+
+  public getDownload(id: number) {
+    const data = this.mpData$.getValue();
+    const today = new Date(Date.now()).toISOString().substring(0, 10);
+    return data['download_app_'+id][today];
   }
 
   public getCardsOnUsers() {

@@ -235,4 +235,25 @@ export class AppService {
     }
     return jsonRes;
   }
+
+  public async getMixPanelData(events: string[]) {
+    const today = new Date(Date.now()).toISOString().substring(0, 10);
+    const params = {
+      'project_id': '2852752',
+      'type': 'unique',
+      'interval': '1',
+      'from_date': today,
+      'to_date': today,
+      'event': JSON.stringify(events)
+    };
+    const response = await fetch(
+      `https://eu.mixpanel.com/api/2.0/events?` + new URLSearchParams(params),
+      { headers: { 'authorization': 'Basic Y29tZWJhY2suNDQ1YmI4Lm1wLXNlcnZpY2UtYWNjb3VudDpDamxNMHF5ODB4bHB0WVVDVHJyN2dmaVA2dEVaNEFLcA==' } }
+    );
+    const jsonRes = await response.json();
+    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
+      throw new Error(jsonRes?.message || 'Error');
+    }
+    return jsonRes;
+  }
 }

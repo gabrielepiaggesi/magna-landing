@@ -73,6 +73,16 @@
             <h4 class="textCenter">Business {{card.business_id}} - from {{card.activeFrom}} Days</h4>
             <div class="flex fRow w100 aCenter">
                 <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{getBusinessVisits(card.business_id)}}</p>
+                    <small>Today Visitors</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{getDownload(card.business_id)}}</p>
+                    <small>Today Download</small>
+                </div>
+            </div>
+            <div class="flex fRow w100 aCenter">
+                <div class="flex fColumn f1 gap5 aCenter">
                     <p class="f1 textCenter">{{card.total}}</p>
                     <small>Total Cards</small>
                 </div>
