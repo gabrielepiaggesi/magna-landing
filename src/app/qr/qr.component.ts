@@ -117,19 +117,19 @@ export class QrComponent implements OnInit {
   }
 
   public clickCard() {
-    this.cardClicked = this.cardClicked + 1;
-    // window.scrollTo(0, document.body.scrollHeight);
-    if (this.cardClicked >= 0) {
-      let message = "Per avere la Carta Fedeltà, segui le istruzioni scritte sotto. Questo locale usa l'app Comeback per gestire le carte.";
-      if (this.lang == 'ch') message = '要获得会员卡, 请按照下面的说明进行操作。该场地使用 Comeback 应用程序来管理他们的卡片。';
-      alert(message);
-    }
-    window.scrollTo({ behavior: 'smooth', top: document.body.scrollHeight });
-    try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Card');
-    } catch(e) {
-      console.log(e);
-    }
+    // this.cardClicked = this.cardClicked + 1;
+    // if (this.cardClicked >= 0) {
+    //   let message = "Per avere la Carta Fedeltà, segui le istruzioni scritte sotto. Questo locale usa l'app Comeback per gestire le carte.";
+    //   if (this.lang == 'ch') message = '要获得会员卡, 请按照下面的说明进行操作。该场地使用 Comeback 应用程序来管理他们的卡片。';
+    //   alert(message);
+    // }
+    // window.scrollTo({ behavior: 'smooth', top: document.body.scrollHeight });
+    // try {
+    //   !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Card');
+    // } catch(e) {
+    //   console.log(e);
+    // }
+    this.download();
   }
 
   public ios() {
