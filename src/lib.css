@@ -583,6 +583,19 @@ select {
     color: white;
 }
 
+.op3 {
+    opacity: 0.3;
+}
+.op4 {
+    opacity: 0.4;
+}
+.op5 {
+    opacity: 0.5;
+}
+.op6 {
+    opacity: 0.6;
+}
+
 .spinner {
     width: 50px;
     padding: 8px;

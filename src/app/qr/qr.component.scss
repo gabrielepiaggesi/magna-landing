@@ -109,6 +109,9 @@ li {
     animation: wiggle 2s linear infinite;
     animation-iteration-count: 2;
 }
+.anim-delay {
+    animation-delay: 10000ms;
+}
 
 .badgeWinner {
     position: absolute;

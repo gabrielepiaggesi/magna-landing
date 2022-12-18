@@ -45,7 +45,7 @@
     </div>
     <img class="w100" style="z-index: 0;" height="170" [src]="card.image_url ? card.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
     <div style="z-index: 1;" class="overlay"></div>
-    <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -100px; z-index: 2;">
+    <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -120px; z-index: 2;">
         <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift mT20" style="min-height: 110px;" (click)="clickCard()" [ngClass]="{ 'mT40': !card?.business_menu_link }">
             <div class="overlay2 op3 br10"></div>
             <div class="flex fColumn gap15 f1" style="padding-right: 0px; z-index: 2;">
@@ -66,12 +66,16 @@
                     <li class="ffG">Menu digitale, anche da casa.</li>
                     <li class="ffG">Notifiche Eventi e Promozioni.</li>
                     <li class="ffG">Recensioni/consigli anonimi.</li>
+                    <li class="ffG">La Carta è Gratis.</li>
                 </ul>
                 
                 <!-- <small class="ffG">La Carta funziona tramite l'app Comeback, un'app in uso in tanti altri locali a Roma.</small> -->
 
-                <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100 brN" (click)="download()"><i class="fa-solid fa-download"></i>&nbsp;
+                <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100 brN anim anim-delay" (click)="download()">
+                    <!-- <i class="fa-solid fa-hand-point-right"></i>&nbsp; -->
                     {{ (tr?.ios || "Scarica l'app") }}
+                    <!-- &nbsp;<i class="fa-regular fa-hand-pointer" style="transform: rotate(-45deg);"></i> -->
+                    &nbsp;<i class="fa-solid fa-hand-pointer" style="transform: rotate(-55deg);"></i>
                 </button>
 
                 <!-- <div class="flex fRow aCenter jBet">
@@ -102,7 +106,19 @@
             </div>
         </div> -->
 
-        <p *ngIf="card.business_menu_link" class="ffG w100 crB ffG pad10 textCenter" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">Leggi il menù online</p>
+        <div (click)="clickCard()" class="flex fRow aCenter w100 br10 boxShaGL pRel" 
+        style="
+            min-height: 110px;
+            transform: rotate(8deg);
+            width: 85%;
+            margin: 0 auto;
+            margin-top: 40px;"
+        >
+            <div class="overlay2 op3 br10"></div>
+            <app-card style="z-index: 0; flex: 1;" [showBio]="false" [fidelity]="card" [lang]="lang"></app-card>
+        </div>
+
+        <p *ngIf="card.business_menu_link" class="ffG w100 crB ffG pad10 textCenter mT10" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">Leggi il menù online</p>
     </div>
     <div class="footer flex fColumn pad15 bgrWl gap5 mT40">
         <small class="w100 textCenter crB ffG pad5" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>

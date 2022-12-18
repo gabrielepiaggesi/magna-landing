@@ -108,19 +108,18 @@ export class WinnerComponent implements OnInit {
   }
 
   public clickCard() {
-    this.cardClicked = this.cardClicked + 1;
-    // window.scrollTo(0, document.body.scrollHeight);
-    let cta = !!this.downloading ? this.tr.cta : this.tr.ios;
+    // this.cardClicked = this.cardClicked + 1;
+    // let cta = !!this.downloading ? this.tr.cta : this.tr.ios;
 
-    let message = `Clicca su '${cta}', scarica l'app, entra e aggiungi la carta!`;
-    if (this.lang == 'ch') message = '点击“获取卡”, 下载应用程序, 输入并添加卡!';
-    alert(message);
-    // window.scrollTo({ behavior: 'smooth', top: document.body.scrollHeight });
-    try {
-      !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Card Win');
-    } catch(e) {
-      console.log(e);
-    }
+    // let message = `Clicca su '${cta}', scarica l'app, entra e aggiungi la carta!`;
+    // if (this.lang == 'ch') message = '点击“获取卡”, 下载应用程序, 输入并添加卡!';
+    // alert(message);
+    // try {
+    //   !window.location.href.includes('web') && !window.location.href.includes('4200') && (window as any).mixpanel.track('Click Card Win');
+    // } catch(e) {
+    //   console.log(e);
+    // }
+    this.download();
   }
 
   public ios() {
