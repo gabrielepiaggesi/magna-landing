@@ -205,8 +205,8 @@ export class QrComponent implements OnInit {
 
   download() {
 
-    const itMsg = "La nostra Carta funziona con l'app Comeback, cosi è sempre con te. Prendi l'app e aggiungi la carta, ci vuole un secondo.";
-    const chMsg = "我们的卡片可与 Comeback 应用程序配合使用，因此它始终与您同在。拿起应用程序并添加卡，这需要一秒钟。";
+    const itMsg = "La nostra Carta funziona con l'app Comeback, cosi è sempre con te. Aggiungi la carta con l'app, ci vuole un secondo.";
+    const chMsg = "我们的卡片可与 Comeback 应用程序配合使用，因此它始终与您同在。使用应用程序添加卡片，只需一秒钟。";
     if (this.businessId == 11) {
       alert(this.lang == 'ch' ? chMsg : itMsg);
     }
