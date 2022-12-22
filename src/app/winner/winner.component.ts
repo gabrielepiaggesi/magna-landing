@@ -201,6 +201,12 @@ export class WinnerComponent implements OnInit {
 
   download() {
 
+    const itMsg = "La nostra Carta funziona con l'app Comeback, cosi è sempre con te. Scarica l'app e aggiungi la carta, ci vuole un secondo.";
+    const chMsg = "我们的卡片可与 Comeback 应用程序配合使用，因此它始终与您同在。下载应用程序并添加卡，这需要一秒钟。";
+    if (this.businessId == 11) {
+      alert(this.lang == 'ch' ? chMsg : itMsg);
+    }
+
     let userAgent = navigator.userAgent || navigator.vendor || (window as any)['opera'];
     console.log(userAgent);
     // Windows Phone must come first because its UA also contains "Android"
