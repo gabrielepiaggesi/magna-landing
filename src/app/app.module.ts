@@ -20,6 +20,7 @@ import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
 import { WinnerComponent } from './winner/winner.component';
 import { LocaleComponent } from './locale/locale.component';
 import { QrComponent } from './qr/qr.component';
+import { CardPageComponent } from './card-page/card-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { QrComponent } from './qr/qr.component';
     FidelityCardComponent,
     WinnerComponent,
     LocaleComponent,
-    QrComponent
+    QrComponent,
+    CardPageComponent
   ],
   imports: [
     BrowserModule,

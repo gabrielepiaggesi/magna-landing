@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BusinessComponent } from './business/business.component';
+import { CardPageComponent } from './card-page/card-page.component';
 import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
 import { HomeComponent } from './home/home.component';
 import { InsightComponent } from './insight/insight.component';
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'qr/:businessId',
     component: QrComponent
+  },
+  {
+    path: 'card/:businessId',
+    component: CardPageComponent
   },
   {
     path: 'landing/:businessId',
