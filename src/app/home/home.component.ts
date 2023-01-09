@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         // this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
         if (businessId == 7) {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
-        } else if (businessId == 11 || businessId == 10) {
+        } else if (businessId == 11 || businessId == 10 || businessId == 4) {
           this.router.navigateByUrl('qr/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
@@ -48,7 +48,7 @@ export class HomeComponent implements OnInit {
         // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
         if (businessId == 7) {
           this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
-        } else if (businessId == 11 || businessId == 10) {
+        } else if (businessId == 11 || businessId == 10 || businessId == 4) {
           this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
