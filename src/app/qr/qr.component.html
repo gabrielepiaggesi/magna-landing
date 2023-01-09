@@ -49,7 +49,7 @@
         <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift mT20" style="min-height: 110px;" (click)="clickCard()" [ngClass]="{ 'mT40': !card?.business_menu_link }">
             <div class="overlay2 op3 br10"></div>
             <div class="flex fColumn gap15 f1" style="padding-right: 0px; z-index: 2;">
-                <ng-container *ngIf="card?.discount_amount">
+                <!-- <ng-container *ngIf="card?.discount_amount">
                     <h2 class="ffG" style="font-size: 21px;">
                         {{ (tr?.discount || 'Ricevi uno SCONTO di ') }}
                         {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }} !
@@ -57,11 +57,12 @@
                 </ng-container>
                 <ng-container *ngIf="!card?.discount_amount">
                     <h2 class="ffG" style="font-size: 21px;">{{card?.slogan || 'PASTO GRATIS!'}}</h2>
-                </ng-container>
+                </ng-container> -->
+                <h2 class="ffG" style="font-size: 21px;">Nuova Carta Cliente</h2>
                 <!-- <p *ngIf="businessId == 11" class="ffG" style="font-size: 17px;">Ogni 5 volte che vieni avrai <strong>uno sconto di 10€. Menù e Prenotazioni prioritarie!</strong></p> -->
                 
                  <ul style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
-                    <li class="ffG"><span style="text-decoration: underline; font-weight: bold;">Sconto di 10€</span> ogni 5 volte che vieni.</li>
+                    <li class="ffG"><span style="text-decoration: underline; font-weight: bold;">Sconto {{ card?.discount_type == 'PERC' ? 'del' : 'di' }} {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }}</span> ogni {{ card?.business_expenses_amount - 1 }} {{ card?.business_id == 11 ? 'volte che vieni.' : 'punti.' }}</li>
                     <li class="ffG">Prenotazioni <span style="text-decoration: underline; font-weight: bold;">prioritarie!</span></li>
                     <li class="ffG">Menu digitale, anche da casa.</li>
                     <li class="ffG">Notifiche Eventi e Promozioni.</li>
@@ -119,6 +120,8 @@
         </div>
 
         <p *ngIf="card.business_menu_link" class="ffG w100 crB ffG pad10 textCenter mT10" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">Leggi il menù online</p>
+
+        <p *ngIf="card.card_description" class="ffG w100 crB ffG pad10 textCenter mT10">{{ card.card_description }}</p>
     </div>
     <div class="footer flex fColumn pad15 bgrWl gap5 mT40">
         <small class="w100 textCenter crB ffG pad5" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>

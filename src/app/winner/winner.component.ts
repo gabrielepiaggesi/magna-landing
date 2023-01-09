@@ -88,7 +88,7 @@ export class WinnerComponent implements OnInit {
       this.appService
         .getBusinessInfo(this.businessId)
         .then((card: any) => {
-          card.card_description = null;
+          // card.card_description = null;
           card.discount_countdown = card.business_expenses_amount - 3;
           card.user_expenses_amount = card.business_expenses_amount;
           if (card?.discount_type == 'PERC' && this.lang == 'it') {

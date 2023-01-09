@@ -90,16 +90,17 @@ export class QrComponent implements OnInit {
           if (card?.discount_type == 'PERC' && this.lang == 'it') {
             this.tr.discount = 'Ricevi uno SCONTO del ';
           }
+          card.slogan = "Nuova Carta Cliente:";
           if (this.businessId == 11) {
             card.image_url = '../../assets/laBonoraCocktail.jpg';
-            card.discount_amount = 0;
-            card.slogan = "Nuova Carta Cliente:";
+            // card.discount_amount = 0;
+            // card.slogan = "Nuova Carta Cliente:";
             this.tr.wantCard = 'La Vuoi?';
             this.tr.end = 'Menù, Sconti e Prenotazioni, tutto con la nostra carta soci.';
           }
           if (this.businessId == 10) {
-            card.discount_amount = 0;
-            card.slogan = "Nuova Carta Cliente:";
+            // card.discount_amount = 0;
+            // card.slogan = "Nuova Carta Cliente:";
             this.tr.wantCard = 'La Vuoi?';
             this.tr.end = 'Menù, Sconti e Prenotazioni, tutto con la nostra carta soci.';
           }
