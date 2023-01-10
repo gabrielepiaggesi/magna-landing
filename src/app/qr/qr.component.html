@@ -121,7 +121,7 @@
 
         <p *ngIf="card.business_menu_link" class="ffG w100 crB ffG pad10 textCenter mT10" style="text-decoration: underline; font-size: 18px;" (click)="menu(card.business_menu_link)">Leggi il menù online</p>
 
-        <p *ngIf="card.card_description && businessId != 4 && businessId != 11" class="ffG w100 crB ffG pad10 textCenter mT10">{{ card.card_description }}</p>
+        <p *ngIf="card.card_description && businessId != 7 && businessId != 11" class="ffG w100 crB ffG pad10 textCenter mT10">{{ card.card_description }}</p>
     </div>
     <div class="footer flex fColumn pad15 bgrWl gap5 mT40">
         <small class="w100 textCenter crB ffG pad5" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>
