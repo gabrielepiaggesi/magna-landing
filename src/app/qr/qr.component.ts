@@ -90,7 +90,6 @@ export class QrComponent implements OnInit {
           if (card?.discount_type == 'PERC' && this.lang == 'it') {
             this.tr.discount = 'Ricevi uno SCONTO del ';
           }
-          card.slogan = "Nuova Carta Cliente:";
           if (this.businessId == 11) {
             card.image_url = '../../assets/laBonoraCocktail.jpg';
             // card.discount_amount = 0;

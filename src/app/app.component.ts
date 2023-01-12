@@ -32,7 +32,7 @@ export class AppComponent {
         // this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
         if (businessId == 7) {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
-        } else if (businessId == 11 || businessId == 10 || businessId == 4 || businessId == 9 || businessId == 8 || businessId == 6) {
+        } else if (businessId == 11 || businessId == 10 || businessId == 4 || businessId == 9 || businessId == 8 || businessId == 6 || businessId == 3) {
           this.router.navigateByUrl('qr/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('business/'+businessId, {replaceUrl: true});
@@ -42,7 +42,7 @@ export class AppComponent {
         // this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});
         if (businessId == 7) {
           this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
-        } else if (businessId == 11 || businessId == 10 || businessId == 4 || businessId == 9 || businessId == 8 || businessId == 6) {
+        } else if (businessId == 11 || businessId == 10 || businessId == 4 || businessId == 9 || businessId == 8 || businessId == 6 || businessId == 3) {
           this.router.navigateByUrl('winner/'+businessId, {replaceUrl: true});
         } else {
           this.router.navigateByUrl('landing/'+businessId, {replaceUrl: true});

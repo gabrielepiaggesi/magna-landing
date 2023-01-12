@@ -62,7 +62,14 @@
                 <!-- <p *ngIf="businessId == 11" class="ffG" style="font-size: 17px;">Ogni 5 volte che vieni avrai <strong>uno sconto di 10€. Menù e Prenotazioni prioritarie!</strong></p> -->
                 
                  <ul style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
-                    <li class="ffG"><span style="text-decoration: underline; font-weight: bold;">Sconto {{ card?.discount_type == 'PERC' ? 'del' : 'di' }} {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }}</span> ogni {{ card?.business_expenses_amount - 1 }} {{ card?.business_id == 11 ? 'volte che vieni.' : 'punti.' }}</li>
+                    <li class="ffG">
+                        <span style="text-decoration: underline; font-weight: bold;" *ngIf="!card.slogan">
+                            Sconto {{ card?.discount_type == 'PERC' ? 'del' : 'di' }} {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }}
+                        </span> 
+                        <span style="text-decoration: underline; font-weight: bold;" *ngIf="card.slogan">
+                            {{ card.slogan }}
+                        </span> 
+                        ogni {{ card?.business_expenses_amount - 1 }} {{ card?.business_id == 11 ? 'volte che vieni.' : 'punti.' }}</li>
                     <li class="ffG">Prenotazioni <span style="text-decoration: underline; font-weight: bold;">prioritarie!</span></li>
                     <li class="ffG" *ngIf="card.business_menu_link">Menu digitale, anche da casa.</li>
                     <li class="ffG">Notifiche Eventi e Promozioni.</li>
