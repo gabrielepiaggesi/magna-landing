@@ -1,0 +1,14 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "6443738691.com.comeback.card",
+                "paths": [
+                    "NOT \/api\/*",
+                    "/m/*"
+                ]
+            }
+        ]
+    }
+}
