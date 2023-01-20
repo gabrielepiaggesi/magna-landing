@@ -1,0 +1,58 @@
+<div *ngIf="!!loading" class="spinner mAuto"></div>
+<div class="gl flex fColumn w100 hM100" *ngIf="(card$ | async) as card">
+    <div class="flex fRow aCenter logoBox gap10" style="z-index: 2;">
+        <img class="logo" src="assets/cbLogo.png" alt="">
+        <span class="ffG" style="font-size: 17px;">{{ card.business_name }}</span>
+    </div>
+    <img class="w100" style="z-index: 0;" height="170" [src]="card.image_url ? card.image_url : 'https://img.freepik.com/free-photo/abstract-blur-food-truck_1339-3329.jpg?w=1380&t=st=1669487530~exp=1669488130~hmac=2193ebdc36a344007af2493f07c4c5f27b651b20620dd570eb60ece2e370759f'" alt="">
+    <div style="z-index: 1;" class="overlay"></div>
+    <div class="flex fColumn gap20 pad15 crB f1" style="margin-top: -80px; z-index: 2;">
+        <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift mT20" style="min-height: 110px;" [ngClass]="{ 'mT40': !card?.business_menu_link }">
+            <div class="overlay2 op3 br10"></div>
+            <div class="flex fColumn gap30 f1" style="padding-right: 0px; z-index: 2;">
+                <!-- <h2 class="ffG" style="font-size: 21px;">Menu, ordinazioni e carta cliente. Solo con l'app puoi:</h2> -->
+                <div class="flex fRow aCenter gap10 mT20" style="z-index: 2;">
+                    <!-- <img class="logo boxShaGL" src="assets/cbLogo.png" alt=""> -->
+                    <h2 class="ffG" style="font-size: 23px;">Con l'App puoi:</h2>
+                </div>
+                 <ul style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
+                    <li class="ffG fw6">Leggere il Menu e ordinare.</li>
+                    <li class="ffG">
+                        <span class="fw6" *ngIf="!card.slogan">
+                            Sconto {{ card?.discount_type == 'PERC' ? 'del' : 'di' }} {{card?.discount_amount}}{{ card?.discount_type == 'PERC' ? '%' : '€' }}
+                        </span> 
+                        <span class="fw6" *ngIf="card.slogan">
+                            {{ card.slogan }}
+                        </span> 
+                        ogni {{ card?.business_expenses_amount - 1 }} {{ card?.business_id == 11 ? 'volte.' : 'punti.' }}</li>
+                    <li class="ffG">Prenotare senza chiamare.</li>
+                    <li class="ffG">Darci recensioni o consigli.</li>
+                    <li class="ffG">
+                        Avere la nostra Carta Cliente.
+                    </li>
+                </ul>
+
+                <div class="flex fColumn gap5 aCenter">
+                    <button *ngIf="!show2Buttons" class="br10 pad10 btnScarica bgrGG w100 btnBr ffG anim anim-delay" (click)="download()">
+                        Continua con l'app
+                        &nbsp;<i class="fa-solid fa-hand-pointer" style="transform: rotate(-55deg);"></i>
+                    </button>
+                </div>
+                <!-- <div class="br10 bgrR anim" style="padding: 3px 7px; width: fit-content; position: absolute; right: -10px; top: -21px;">
+                    <h5 style="display: inline;" class="ffG">Facile e Veloce</h5>
+                </div> -->
+                <img class="boxShaGL" width="54" style="border-radius: 10px; position: absolute; right: -10px; top: -20px;" src="assets/cbLogo.png" alt="">
+            </div>
+        </div>
+
+        <p class="ffG w100 mAuto crB ffG pad5 mT5 textCenter mT10" style="font-size: 18px;">
+            <span style="display: block;">Facile, leggera, la scarichi una volta e</span> 
+            <span style="display: block;">la usi anche in altri locali.</span>
+        </p>
+
+    </div>
+    <div class="footer flex fColumn pad15 bgrWl gap5 mT80 op5">
+        <small class="ffG w90 mAuto crB ffG mB5 textCenter" style="font-size: 16px;" (click)="menu(card.business_menu_link)">continua senza app e senza benefici.</small>
+        <a class="textCenter w100 crB ffG pad5" style="text-decoration: none !important; font-size: smaller;" target="_blank" href="https://www.freepik.com/free-vector/red-ribbon-bow_1529572.htm#query=gift&position=35&from_view=search&track=sph">Image by macrovector on Freepik</a>
+    </div>
+</div>

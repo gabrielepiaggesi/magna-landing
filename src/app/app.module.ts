@@ -21,6 +21,7 @@ import { WinnerComponent } from './winner/winner.component';
 import { LocaleComponent } from './locale/locale.component';
 import { QrComponent } from './qr/qr.component';
 import { CardPageComponent } from './card-page/card-page.component';
+import { MComponent } from './m/m.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CardPageComponent } from './card-page/card-page.component';
     WinnerComponent,
     LocaleComponent,
     QrComponent,
-    CardPageComponent
+    CardPageComponent,
+    MComponent
   ],
   imports: [
     BrowserModule,
