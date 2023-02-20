@@ -24,7 +24,7 @@ export class WinnerComponent implements OnInit {
     withCard: '使用数字会员卡',
     wantCard: '...迅速的!',
     downloadApp: '完成并领取',
-    downloadApp2: '下载 COMEBACK 应用程序并使用本地代码添加卡',
+    downloadApp2: '下载 COMEBACK 应用程序并免费获得我们的卡。',
     enter: '仅剩7个',
     end: '菜单、折扣、预订和评论, 一切尽在会员卡!',
     ios: '拿纸',
@@ -32,7 +32,7 @@ export class WinnerComponent implements OnInit {
     iosApp: '为 iPhone 下载',
     androidApp: '下载安卓版',
     nDownloadApp: '下载 COMEBACK 应用程序',
-    nEnter: '回车, 点击“+”, 输入店铺代码',
+    nEnter: '进来，打开我们的餐厅或点击“新卡”',
     cta: '下载应用程序'
   };
 
@@ -42,7 +42,7 @@ export class WinnerComponent implements OnInit {
     withCard: 'Hai vinto la Carta Fedeltà ',
     wantCard: '...veloce!',
     downloadApp: "Completala e ricevi ",
-    downloadApp2: `Scarica l'app COMEBACK e prendi la carta con il codice locale `,
+    downloadApp2: `Scarica l'app COMEBACK e prendi la nostra carta gratis.`,
     enter: 'Solo 7 rimaste',
     end: 'Menù, Sconti, Prenotazioni e Recensioni, tutto con la carta fedeltà!',
     ios: "Prendi Carta",
@@ -50,7 +50,7 @@ export class WinnerComponent implements OnInit {
     iosApp: 'Scarica per iPhone',
     androidApp: 'Scarica per Android',
     nDownloadApp: "Scarica l'app COMEBACK",
-    nEnter: 'Entra, clicca sul "+", e scrivi il codice locale ',
+    nEnter: 'Entra, apri il nostro locale o clicca su "Nuova Carta"',
     cta: 'Scarica ora'
   };
 

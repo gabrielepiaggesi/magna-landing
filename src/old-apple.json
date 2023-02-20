@@ -1,0 +1,19 @@
+{
+    "applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "A463YRGUNY.com.comeback.card",
+                "paths": [
+                    "*"
+                ]
+            },
+            {
+                "appID": "5Q977C74Q8.com.comeback.card",
+                "paths": [
+                    "*"
+                ]
+            }
+        ]
+    }
+}

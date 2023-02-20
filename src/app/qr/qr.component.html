@@ -74,7 +74,9 @@
                     <li class="ffG" *ngIf="card.business_menu_link">Menu digitale, anche da casa.</li>
                     <li class="ffG">Notifiche Eventi e Promozioni.</li>
                     <li class="ffG">Recensioni/consigli anonimi.</li>
-                    <li class="ffG">La Carta è Gratis e funziona con l'app.</li>
+                    <li *ngIf="businessId != 4" class="ffG">La Carta è Gratis funziona con l'app.</li>
+                    <li *ngIf="businessId == 4" class="ffG">La Carta funziona con l'app.</li>
+                    <li *ngIf="businessId == 4" class="ffG">Servizio completamente gratuito per sempre!</li>
                     <!-- <li class="ffG">La Carta è gratis, digitale e semplice.</li> -->
                 </ul>
                 

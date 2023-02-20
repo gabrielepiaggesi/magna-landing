@@ -29,7 +29,8 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/apple-app-site-association"
+              "src/apple-app-site-association",
+              "src/.well-known"
             ],
             "styles": [
               "src/styles.scss"

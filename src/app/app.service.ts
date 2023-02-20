@@ -140,9 +140,9 @@ export class AppService {
     return jsonRes;
   }
 
-  public async getTotalUsers() {
+  public async getGeneralData() {
     const response = await fetch(
-      `${this.BASE_URL}/public/getTotalUsers`,
+      `${this.BASE_URL}/public/getGeneralData`,
       { headers: this.getHeaders() }
     );
     const jsonRes = await response.json();
@@ -152,10 +152,15 @@ export class AppService {
     return jsonRes;
   }
 
-  public async getTodayUsers() {
+  public async getPeriodData(body: any = {}) {
+    const opts = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: this.getAuthHeaders(),
+    };
     const response = await fetch(
-      `${this.BASE_URL}/public/getTodayUsers`,
-      { headers: this.getHeaders() }
+      `${this.BASE_URL}/public/getPeriodData`,
+      opts
     );
     const jsonRes = await response.json();
     if (!response.ok || (response.status >= 400 && response.status <= 500)) {
@@ -164,10 +169,15 @@ export class AppService {
     return jsonRes;
   }
 
-  public async getTotalFidelitiesCards() {
+  public async getMonthData(body: any = {}) {
+    const opts = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: this.getAuthHeaders(),
+    };
     const response = await fetch(
-      `${this.BASE_URL}/public/getTotalFidelitiesCards`,
-      { headers: this.getHeaders() }
+      `${this.BASE_URL}/public/getMonthData`,
+      opts
     );
     const jsonRes = await response.json();
     if (!response.ok || (response.status >= 400 && response.status <= 500)) {
@@ -176,10 +186,15 @@ export class AppService {
     return jsonRes;
   }
 
-  public async getTotalBusinesses() {
+  public async getWeekData(body: any = {}) {
+    const opts = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: this.getAuthHeaders(),
+    };
     const response = await fetch(
-      `${this.BASE_URL}/public/getTotalBusinesses`,
-      { headers: this.getHeaders() }
+      `${this.BASE_URL}/public/getWeekData`,
+      opts
     );
     const jsonRes = await response.json();
     if (!response.ok || (response.status >= 400 && response.status <= 500)) {
@@ -188,46 +203,15 @@ export class AppService {
     return jsonRes;
   }
 
-  public async getTotalReservations() {
+  public async getDayData(body: any = {}) {
+    const opts = {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: this.getAuthHeaders(),
+    };
     const response = await fetch(
-      `${this.BASE_URL}/public/getTotalReservations`,
-      { headers: this.getHeaders() }
-    );
-    const jsonRes = await response.json();
-    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
-      throw new Error(jsonRes?.message || 'Error');
-    }
-    return jsonRes;
-  }
-
-  public async getTotalReservationsToday() {
-    const response = await fetch(
-      `${this.BASE_URL}/public/getTotalReservationsToday`,
-      { headers: this.getHeaders() }
-    );
-    const jsonRes = await response.json();
-    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
-      throw new Error(jsonRes?.message || 'Error');
-    }
-    return jsonRes;
-  }
-
-  public async getTotalReviews() {
-    const response = await fetch(
-      `${this.BASE_URL}/public/getTotalReviews`,
-      { headers: this.getHeaders() }
-    );
-    const jsonRes = await response.json();
-    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
-      throw new Error(jsonRes?.message || 'Error');
-    }
-    return jsonRes;
-  }
-
-  public async getTotalReviewsToday() {
-    const response = await fetch(
-      `${this.BASE_URL}/public/getTotalReviewsToday`,
-      { headers: this.getHeaders() }
+      `${this.BASE_URL}/public/getDayData`,
+      opts
     );
     const jsonRes = await response.json();
     if (!response.ok || (response.status >= 400 && response.status <= 500)) {
@@ -237,7 +221,7 @@ export class AppService {
   }
 
   public async getMixPanelData(events: string[]) {
-    const today = new Date(Date.now()).toISOString().substring(0, 10);
+    const today = new Date(Date.now()).toLocaleString('sv', {timeZone: 'Europe/Rome'}).substring(0, 10);
     const params = {
       'project_id': '2852752',
       'type': 'unique',

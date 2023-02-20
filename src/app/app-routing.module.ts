@@ -34,7 +34,7 @@ const routes: Routes = [
     component: QrComponent
   },
   {
-    path: 'm/:businessId',
+    path: 'm/:businessId/:tableNumber',
     component: MComponent
   },
   {

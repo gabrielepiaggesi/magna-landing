@@ -1,3 +1,196 @@
+<div class="flex fColumn crG">
+    <div class="flex fColumn gap15 pad20 br1B" *ngIf="(dayData$ | async) as dayData">
+        <h2 class="fw7">Oggi</h2>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi</h4>
+            <h4 class="fw4">{{dayData.created}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte</h4>
+            <h4 class="fw4">{{dayData.createdSemiActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte timbrate</h4>
+            <h4 class="fw4">{{dayData.createdActive}} - {{getPerc(dayData.createdActive, dayData.createdSemiActive)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati (loggati = tutti inclusi nuovi)</h4>
+            <h4 class="fw4">{{dayData.session}} - {{(100 - getPerc(dayData.created, dayData.session))}}% non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati con nuove carte</h4>
+            <h4 class="fw4">{{dayData.sessionSemiActive}} - {{ dayData.sessionSemiActive - dayData.createdSemiActive }} da non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati che hanno timbrato</h4>
+            <h4 class="fw4">{{dayData.sessionActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove</h4>
+            <h4 class="fw4">{{dayData.cardsCreated}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove timbrate</h4>
+            <h4 class="fw4">{{dayData.cardsCreatedActive}} - {{getPerc(dayData.cardsCreatedActive, dayData.cardsCreated)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate</h4>
+            <h4 class="fw4">{{dayData.cardsActive}}</h4>
+        </div>
+    </div>
+
+    <div class="flex fColumn gap15 pad20 br1B" *ngIf="(yesterdayData$ | async) as yesterdayData">
+        <h2 class="fw7">Ieri</h2>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi</h4>
+            <h4 class="fw4">{{yesterdayData.created}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte</h4>
+            <h4 class="fw4">{{yesterdayData.createdSemiActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte timbrate</h4>
+            <h4 class="fw4">{{yesterdayData.createdActive}} - {{getPerc(yesterdayData.createdActive, yesterdayData.createdSemiActive)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati (loggati = tutti inclusi nuovi)</h4>
+            <h4 class="fw4">{{yesterdayData.session}} - {{(100 - getPerc(yesterdayData.created, yesterdayData.session))}}% non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati con nuove carte</h4>
+            <h4 class="fw4">{{yesterdayData.sessionSemiActive}} - {{ yesterdayData.sessionSemiActive - yesterdayData.createdSemiActive }} da non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati che hanno timbrato</h4>
+            <h4 class="fw4">{{yesterdayData.sessionActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove</h4>
+            <h4 class="fw4">{{yesterdayData.cardsCreated}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove timbrate</h4>
+            <h4 class="fw4">{{yesterdayData.cardsCreatedActive}} - {{getPerc(yesterdayData.cardsCreatedActive, yesterdayData.cardsCreated)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate</h4>
+            <h4 class="fw4">{{yesterdayData.cardsActive}}</h4>
+        </div>
+    </div>
+
+    <div class="flex fColumn gap15 pad20 br1B" *ngIf="(weekData$ | async) as weekData">
+        <h2 class="fw7">Questa Settimana</h2>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi</h4>
+            <h4 class="fw4">{{weekData.created}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte</h4>
+            <h4 class="fw4">{{weekData.createdSemiActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte timbrate</h4>
+            <h4 class="fw4">{{weekData.createdActive}} - {{getPerc(weekData.createdActive, weekData.createdSemiActive)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati (loggati = tutti inclusi nuovi) </h4>
+            <h4 class="fw4">{{weekData.session}} - {{(100 - getPerc(weekData.created, weekData.session))}}% non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati con nuove carte</h4>
+            <h4 class="fw4">{{weekData.sessionSemiActive}} - {{ weekData.sessionSemiActive - weekData.createdSemiActive }} da non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati che hanno timbrato</h4>
+            <h4 class="fw4">{{weekData.sessionActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove</h4>
+            <h4 class="fw4">{{weekData.cardsCreated}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove timbrate</h4>
+            <h4 class="fw4">{{weekData.cardsCreatedActive}} - {{getPerc(weekData.cardsCreatedActive, weekData.cardsCreated)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate</h4>
+            <h4 class="fw4">{{weekData.cardsActive}}</h4>
+        </div>
+    </div>
+
+    <div class="flex fColumn gap15 pad20 br1B" *ngIf="(monthData$ | async) as monthData">
+        <h2 class="fw7">Questo Mese</h2>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi</h4>
+            <h4 class="fw4">{{monthData.created}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte</h4>
+            <h4 class="fw4">{{monthData.createdSemiActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte timbrate</h4>
+            <h4 class="fw4">{{monthData.createdActive}} - {{getPerc(monthData.createdActive, monthData.createdSemiActive)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati (loggati = tutti inclusi nuovi)</h4>
+            <h4 class="fw4">{{monthData.session}} - {{(100 - getPerc(monthData.created, monthData.session))}}% non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati con nuove carte</h4>
+            <h4 class="fw4">{{monthData.sessionSemiActive}} - {{ monthData.sessionSemiActive - monthData.createdSemiActive }} da non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati che hanno timbrato</h4>
+            <h4 class="fw4">{{monthData.sessionActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove</h4>
+            <h4 class="fw4">{{monthData.cardsCreated}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove timbrate</h4>
+            <h4 class="fw4">{{monthData.cardsCreatedActive}} - {{getPerc(monthData.cardsCreatedActive, monthData.cardsCreated)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate</h4>
+            <h4 class="fw4">{{monthData.cardsActive}}</h4>
+        </div>
+    </div>
+
+    <div class="flex fColumn gap15 pad20 br1B" *ngIf="(periodData$ | async) as periodData">
+        <h2 class="fw7">Da Sempre</h2>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti totali</h4>
+            <h4 class="fw4" >{{periodData.created}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti con carte</h4>
+            <h4 class="fw4">{{periodData.createdSemiActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti con carte timbrate</h4>
+            <h4 class="fw4">{{periodData.createdActive}} - {{getPerc(periodData.createdActive, periodData.createdSemiActive)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte totali</h4>
+            <h4 class="fw4">{{periodData.cardsCreated}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte totali timbrate</h4>
+            <h4 class="fw4">{{periodData.cardsActive}} - {{getPerc(periodData.cardsActive, periodData.cardsCreated)}}%</h4>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
 <div class="flex fColumn gap40 pad20 crG">
     <div class="flex fColumn pad20 br10 gap10 br1B">
         <h4 class="textCenter">App Info</h4>
@@ -90,6 +283,16 @@
                     <p class="f1 textCenter">{{card.total}}</p>
                     <small>Total Cards</small>
                 </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{card.cardsActive}}</p>
+                    <small>Active Cards</small>
+                </div>
+                <div class="flex fColumn f1 gap5 aCenter">
+                    <p class="f1 textCenter">{{getPerc(card.cardsActive, card.total)}}<small style="font-size: 18px;">%</small> </p>
+                    <small>Act %</small>
+                </div>
+            </div>
+            <div class="flex fRow w100 aCenter">
                 <div class="flex fColumn f1 gap5 aCenter">
                     <p class="f1 textCenter">{{getCardsAvg(card.total, card.activeFrom)}}</p>
                     <small>Avg per Day</small>

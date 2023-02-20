@@ -13,7 +13,7 @@ export class InsightComponent implements OnInit {
   public cards$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public newTodayCards$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public scannedTodayCards$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
-  public cardsByBusiness$: BehaviorSubject<{business_id: number, total: number, cards: any[], today: number, activeFrom?: number}[]> = new BehaviorSubject<{business_id: number, total: number, cards: any[], today: number, activeFrom?: number}[]>([]);
+  public cardsByBusiness$: BehaviorSubject<{business_id: number, total: number, cards: any[], cardsActive: number, today: number, activeFrom?: number}[]> = new BehaviorSubject<{business_id: number, total: number, cards: any[], cardsActive: number, today: number, activeFrom?: number}[]>([]);
   public todayUsers$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reservations$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public reservationsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
@@ -21,23 +21,62 @@ export class InsightComponent implements OnInit {
   public reviewsToday$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
   public mpData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
+  public periodData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public monthData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public weekData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public dayData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public yesterdayData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+
   constructor(public appService: AppService) { }
 
   ngOnInit(): void {
+    // this.generalData();
+    this.getDayData();
+    this.getDayData(1);
+    this.getWeekData();
+    this.getMonthData();
+    this.getPeriodData();
+    this.generalData();
+  }
+
+  public getPeriodData() {
     this.loading = true;
-    // this.getMPData();
-    Promise.all([
-      this.appService.getTotalUsers(),
-      this.appService.getTotalFidelitiesCards(),
-      this.appService.getTodayUsers(),
-      this.appService.getTotalReservations(),
-      this.appService.getTotalReservationsToday(),
-      this.appService.getTotalReviews(),
-      this.appService.getTotalReviewsToday(),
-    ])
+    this.appService.getPeriodData()
+    .then((response: any) => this.periodData$.next(response))
+    .catch((e: any) => console.error(e))
+    .finally(() => this.loading = false);
+  }
+
+  public getMonthData(amountToSubstract = 0) {
+    this.loading = true;
+    this.appService.getMonthData({amountToSubstract})
+    .then((response: any) => this.monthData$.next(response))
+    .catch((e: any) => console.error(e))
+    .finally(() => this.loading = false);
+  }
+
+  public getWeekData(amountToSubstract = 0) {
+    this.loading = true;
+    this.appService.getWeekData({amountToSubstract})
+    .then((response: any) => this.weekData$.next(response))
+    .catch((e: any) => console.error(e))
+    .finally(() => this.loading = false);
+  }
+
+  public getDayData(amountToSubstract = 0) {
+    this.loading = true;
+    this.appService.getDayData({amountToSubstract})
+    .then((response: any) => !amountToSubstract ? this.dayData$.next(response) : this.yesterdayData$.next(response))
+    .catch((e: any) => console.error(e))
+    .finally(() => this.loading = false);
+  }
+
+  public generalData() {
+    this.loading = true;
+    this.appService.getGeneralData()
     .then((response: any) => {
-      this.users$.next(response[0]);
-      const cardsData = response[1];
+      this.users$.next(response.totalUsers);
+      const cardsData = response.totalFidelitiesCards;
       const today = new Date(Date.now()).toISOString().substring(0, 10);
 
       const totalCards = cardsData.totalCards;
@@ -80,11 +119,11 @@ export class InsightComponent implements OnInit {
       this.newTodayCards$.next(newTodayCards.length);
       this.scannedTodayCards$.next(scannedTodayCards.length);
 
-      this.todayUsers$.next(response[2]);
-      this.reservations$.next(response[3] - 16);
-      this.reservationsToday$.next(response[4]);
-      this.reviews$.next(response[5] - 3);
-      this.reviewsToday$.next(response[6]);
+      this.todayUsers$.next(response.todayUsers);
+      this.reservations$.next(response.totalReservations - 16);
+      this.reservationsToday$.next(response.totalReservationsToday);
+      this.reviews$.next(response.totalReviews - 3);
+      this.reviewsToday$.next(response.totalReviewsToday);
     })
     .catch((e: any) => console.error(e))
     .finally(() => this.loading = false);
@@ -114,8 +153,12 @@ export class InsightComponent implements OnInit {
     const today = new Date(Date.now()).toISOString().substring(0, 10);
     const v = data['business_'+id][today];
     const d = data['download_app_'+id][today];
+    return this.getPerc(d, v);
+  }
+
+  getPerc(d: number, v: number): number {
     const perc = (d * 100) / v;
-    return perc ? perc.toFixed(0) : 0;
+    return perc ? +perc.toFixed(0) : 0;
   }
 
   public getCardsOnUsers() {

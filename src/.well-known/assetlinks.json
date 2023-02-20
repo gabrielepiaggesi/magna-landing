@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.comeback.card",
+      "sha256_cert_fingerprints": [
+        "CA:5E:B7:2C:9A:74:2D:82:90:7F:60:9E:26:C7:C5:83:3A:60:67:77:3C:A7:48:A6:42:CC:BD:E1:75:C8:48:1F"
+      ]
+    }
+  }
+]

@@ -11,7 +11,8 @@
         <div class="flex fRow aCenter jBet w100 bgrW br10 boxShaGL pad15 pRel gift anim" style="min-height: 110px;" (click)="clickCard()" [ngClass]="{ 'mT40': !card?.business_menu_link }">
             <div class="overlay op3 br10"></div>
             <div class="flex fColumn gap15 f1" style="padding-right: 0px; z-index: 2;">
-                <h2 class="ffG" style="font-size: 21px;">{{ (tr?.withCard || 'Hai vinto la Carta Fedeltà ') }}<span style="display: inline-block">{{ (tr?.android || 'di') }} {{card.business_name}}{{ (tr?.wantCard || '...veloce!') }}</span></h2>
+                <h2 *ngIf="lang == 'ch'" class="ffG" style="font-size: 21px;">{{ (tr?.withCard || 'Hai vinto la Carta Fedeltà ') }}<span style="display: inline-block">{{ (tr?.android || 'di') }} {{card.business_name}}{{ (tr?.wantCard || '...veloce!') }}</span></h2>
+                <h2 *ngIf="lang != 'ch'" class="ffG" style="font-size: 21px; font-weight: 600;">Hai vinto la nostra Carta Fedeltà<span style="display: inline-block">...veloce! È gratis.</span></h2>
                 <div class="flex fRow aCenter jBet">
                     <div class="br10 bgrR" style="padding: 5px 10px; width: fit-content;">
                         <h4 style="display: inline;" class="ffG">{{ (tr?.enter || 'Solo 7 rimaste') }}</h4>
@@ -27,7 +28,7 @@
             <!-- <h2 class="ffG" style="font-size: 21px;">La Vuoi ?</h2> -->
             
             
-            <p *ngIf="!downloading" class="ffG mB15">{{ (tr?.downloadApp2 || "Scarica l'app COMEBACK e prendi la carta con il codice locale ") }}"{{card.business_id}}". {{ (tr?.downloadApp || 'Completala e ricevi ') }}
+            <p *ngIf="!downloading" class="ffG mB15">{{ (tr?.downloadApp2 || "Scarica l'app COMEBACK e prendi la nostra carta.") }} {{ (tr?.downloadApp || 'Completala e ricevi ') }}
                 
                 <ng-container *ngIf="card?.discount_amount">
                     <strong style="display: inline-block; font-size: 18px; text-decoration: underline;">
@@ -45,7 +46,7 @@
                 <h2 class="ffG" style="font-size: 21px;">Per prendere la Carta:</h2>
                 <ol style="padding-inline-start: 20px; margin-block-start: 0; margin-block-end: 0;">
                     <li class="ffG" (click)="download()">{{ (tr?.nDownloadApp || "Scarica l'app COMEBACK") }}</li>
-                    <li class="ffG">{{ (tr?.nEnter || 'Entra, clicca sul "+", e scrivi il codice locale') }} "{{card.business_id}}".</li>
+                    <li class="ffG">{{ (tr?.nEnter || 'Entra, apri il nostro locale o clicca su "Nuova Carta"') }}.</li>
                 </ol>
             </ng-container>
 
@@ -81,7 +82,7 @@
         </div>
     </div>
     <div class="footer flex fColumn pad15 bgrWl gap10 mT80">
-        <p *ngIf="card.card_description && businessId != 7 && businessId != 11" class="ffG w100 crB ffG pad10 textCenter mT10">{{ card.card_description }}</p>
+        <!-- <p *ngIf="card.card_description && businessId != 7 && businessId != 11 && businessId != 4" class="ffG w100 crB ffG pad10 textCenter mT10">{{ card.card_description }}</p> -->
         <small class="w100 textCenter crB ffG pad10 mT10" style="text-decoration: underline;" (click)="mail()">{{ (tr?.youToo || 'Vuoi usare comeback per la tua attività? Scrivici') }}</small>
         <a class="textCenter w100 crB ffG pad10" style="text-decoration: none !important; font-size: smaller;" target="_blank" href="https://www.freepik.com/free-vector/red-ribbon-bow_1529572.htm#query=gift&position=35&from_view=search&track=sph">Image by macrovector on Freepik</a>
     </div>
