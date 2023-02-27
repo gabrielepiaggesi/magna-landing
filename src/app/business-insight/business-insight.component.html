@@ -1,0 +1,73 @@
+<ng-container *ngIf="!currentUserNotValid && !currentHourNotValid">
+
+    <div class="flex fColumn crG" *ngIf="(data$ | async) as data">
+        <div class="flex fColumn gap15 pad20 br1B">
+            <h2 class="fw7">Ieri</h2>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte nuove</h4>
+                <h4 class="fw4">{{data.yesterdayCreated}}</h4>
+            </div>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte timbrate</h4>
+                <h4 class="fw4">{{data.yesterdayTimbered}}</h4>
+            </div>
+        </div>
+
+        <div class="flex fColumn gap15 pad20 br1B">
+            <h2 class="fw7">Questa settimana</h2>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte nuove</h4>
+                <h4 class="fw4">{{data.currentWeekCreated}}</h4>
+            </div>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte timbrate</h4>
+                <h4 class="fw4">{{data.currentWeekTimbered}}</h4>
+            </div>
+        </div>
+
+        <div class="flex fColumn gap15 pad20 br1B">
+            <h2 class="fw7">Scorsa settimana</h2>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte nuove</h4>
+                <h4 class="fw4">{{data.pastWeekCreated}}</h4>
+            </div>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte timbrate</h4>
+                <h4 class="fw4">{{data.pastWeekTimbered}}</h4>
+            </div>
+        </div>
+
+        <div class="flex fColumn gap15 pad20 br1B">
+            <h2 class="fw7">Questo mese</h2>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte nuove</h4>
+                <h4 class="fw4">{{data.currentMonthCreated}}</h4>
+            </div>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte timbrate</h4>
+                <h4 class="fw4">{{data.currentMonthTimbered}}</h4>
+            </div>
+        </div>
+
+        <div class="flex fColumn gap15 pad20 br1B">
+            <h2 class="fw7">Da sempre</h2>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte Totali</h4>
+                <h4 class="fw4">{{data.total}}</h4>
+            </div>
+        </div>
+    </div>
+
+</ng-container>
+
+<div class="flex fColumn crG" *ngIf="currentHourNotValid">
+    <div class="flex fColumn gap15 pad20 br1B">
+        <h2 class="fw7">Orario non supportato, visita questa pagina tra le 3 di mattina e mezzogiorno.</h2>
+    </div>
+</div>
+
+<div class="flex fColumn crG" *ngIf="currentUserNotValid">
+    <div class="flex fColumn gap15 pad20 br1B">
+        <h2 class="fw7">Non sei autorizzato a visitare questa pagina.</h2>
+    </div>
+</div>

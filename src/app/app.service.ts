@@ -220,6 +220,18 @@ export class AppService {
     return jsonRes;
   }
 
+  public async getInsightForBusiness(businessId: number) {
+    const response = await fetch(
+      `${this.BASE_URL}/public/getInsightForBusiness/${businessId}`,
+      { headers: this.getAuthHeaders() }
+    );
+    const jsonRes = await response.json();
+    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
+      throw new Error(jsonRes?.message || 'Error');
+    }
+    return jsonRes;
+  }
+
   public async getMixPanelData(events: string[]) {
     const today = new Date(Date.now()).toLocaleString('sv', {timeZone: 'Europe/Rome'}).substring(0, 10);
     const params = {

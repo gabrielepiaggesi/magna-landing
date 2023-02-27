@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { BusinessInsightComponent } from './business-insight/business-insight.component';
 import { BusinessComponent } from './business/business.component';
 import { CardPageComponent } from './card-page/card-page.component';
 import { FidelityCardComponent } from './fidelity-card/fidelity-card.component';
@@ -10,6 +11,7 @@ import { LocaleComponent } from './locale/locale.component';
 import { MComponent } from './m/m.component';
 import { MenuListComponent } from './menu-list/menu-list.component';
 import { MenuComponent } from './menu/menu.component';
+import { PlanComponent } from './plan/plan.component';
 import { QrMenuComponent } from './qr-menu/qr-menu.component';
 import { QrComponent } from './qr/qr.component';
 import { ReferralComponent } from './referral/referral.component';
@@ -24,6 +26,14 @@ const routes: Routes = [
   {
     path: 'business/:businessId',
     component: BusinessComponent
+  },
+  {
+    path: 'business-insight/:businessId',
+    component: BusinessInsightComponent
+  },
+  {
+    path: 'plan/:businessId',
+    component: PlanComponent
   },
   {
     path: 'locale/:businessId',
