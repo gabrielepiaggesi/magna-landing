@@ -49,6 +49,18 @@ export class AppService {
     return jsonRes;
   }
 
+  public async getLoggedUser() {
+    const response = await fetch(
+      `${this.BASE_URL}/user/getLoggedUser/`,
+      { headers: this.getAuthHeaders() }
+    );
+    const jsonRes = await response.json();
+    if (!response.ok || (response.status >= 400 && response.status <= 500)) {
+      throw new Error(jsonRes?.message || 'Error');
+    }
+    return jsonRes;
+  }
+
   public async getBusinessMenuList(businessId: number) {
     const response = await fetch(
       `${this.BASE_URL}/menuInfo/getMenus/${businessId}`,
