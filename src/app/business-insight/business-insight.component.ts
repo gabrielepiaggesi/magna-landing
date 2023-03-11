@@ -13,6 +13,7 @@ export class BusinessInsightComponent implements OnInit {
   public loading = false;
   public currentHourNotValid = false;
   public currentUserNotValid = false;
+  public userId!: number;
   public data$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
 
   constructor(public activateRouter: ActivatedRoute, private appService: AppService) {
@@ -25,6 +26,17 @@ export class BusinessInsightComponent implements OnInit {
 
   ngOnInit(): void {
     this.businessId && this.getInsight();
+    this.getLoggedUser();
+  }
+
+  public getLoggedUser() {
+    this.loading = true;
+    this.appService.getLoggedUser()
+    .then((response: any) => {
+      this.userId = response.id;
+    })
+    .catch((e: any) => console.error(e))
+    .finally(() => this.loading = false);
   }
 
   private getInsight() {

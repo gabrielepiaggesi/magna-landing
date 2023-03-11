@@ -30,17 +30,25 @@ export class PlanComponent implements OnInit {
     this.data$.subscribe((data) => {
       const user = this.user$.getValue();
       const business = data;
-      this.mustPay = business.must_pay;
+      this.mustPay = business.should_pay || business.must_pay;
+      let link = '';
       if (this.mustPay) {
         const prefilledEmail = user.email;
         const clientReferenceId = user.id + '_' + business.id;
-        const stripeUrl = business.stripe_payment_url + `?prefilled_email=${prefilledEmail}&client_reference_id=${clientReferenceId}`;
-        window.open(stripeUrl || 'https://buy.stripe.com/dR618bbT3bfTbYIaEE');
+        link = (business.stripe_payment_url || 'https://buy.stripe.com/dR618bbT3bfTbYIaEE') + `?prefilled_email=${prefilledEmail}&client_reference_id=${clientReferenceId}`;
+        // window.open(stripeUrl, 'blank');
       } else {
-        const stripeDashboardUrl = business.stripe_dashboard_url;
-        window.open(stripeDashboardUrl || 'https://billing.stripe.com/p/login/4gwbJvb4E6zt8Te5kk');
+        link = business.stripe_dashboard_url || 'https://billing.stripe.com/p/login/4gwbJvb4E6zt8Te5kk';
+        // window.open(stripeDashboardUrl || 'https://billing.stripe.com/p/login/4gwbJvb4E6zt8Te5kk', 'blank');
+      }
+
+      if (business) {
+        const a = document.createElement('a');
+        a.href = link;
+        a.click();
       }
     });
+    this.getLoggedUser();
   }
 
   public getLoggedUser() {

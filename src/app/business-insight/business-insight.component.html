@@ -50,12 +50,33 @@
         </div>
 
         <div class="flex fColumn gap15 pad20 br1B">
+            <h2 class="fw7">Scorso mese</h2>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte nuove</h4>
+                <h4 class="fw4">{{data.pastMonthCreated}}</h4>
+            </div>
+            <div class="flex fColumn gap5">
+                <h4 class="fw5">Carte timbrate</h4>
+                <h4 class="fw4">{{data.pastMonthTimbered}}</h4>
+            </div>
+        </div>
+
+        <div class="flex fColumn gap15 pad20 br1B">
             <h2 class="fw7">Da sempre</h2>
             <div class="flex fColumn gap5">
                 <h4 class="fw5">Carte Totali</h4>
                 <h4 class="fw4">{{data.total}}</h4>
             </div>
+            <div *ngIf="userId == 1" class="flex fColumn gap5">
+                <h4 class="fw5">Carte Totali Timbrate</h4>
+                <h4 class="fw4">{{data.totalUsed}}</h4>
+            </div>
+            <div *ngIf="userId == 1" class="flex fColumn gap5">
+                <h4 class="fw5">Carte Totali Timbrate piu di 1</h4>
+                <h4 class="fw4">{{data.totalUsedMoreThan1}}</h4>
+            </div>
         </div>
+
     </div>
 
 </ng-container>

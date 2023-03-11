@@ -37,6 +37,10 @@
             <h4 class="fw5">Carte timbrate</h4>
             <h4 class="fw4">{{dayData.cardsActive}}</h4>
         </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate di cui usate piu di una volta</h4>
+            <h4 class="fw4">{{dayData.cardsUsageActive}}</h4>
+        </div>
     </div>
 
     <div class="flex fColumn gap15 pad20 br1B" *ngIf="(yesterdayData$ | async) as yesterdayData">
@@ -76,6 +80,10 @@
         <div class="flex fColumn gap5">
             <h4 class="fw5">Carte timbrate</h4>
             <h4 class="fw4">{{yesterdayData.cardsActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate di cui usate piu di una volta</h4>
+            <h4 class="fw4">{{yesterdayData.cardsUsageActive}}</h4>
         </div>
     </div>
 
@@ -117,6 +125,10 @@
             <h4 class="fw5">Carte timbrate</h4>
             <h4 class="fw4">{{weekData.cardsActive}}</h4>
         </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate di cui usate piu di una volta</h4>
+            <h4 class="fw4">{{weekData.cardsUsageActive}}</h4>
+        </div>
     </div>
 
     <div class="flex fColumn gap15 pad20 br1B" *ngIf="(monthData$ | async) as monthData">
@@ -157,6 +169,54 @@
             <h4 class="fw5">Carte timbrate</h4>
             <h4 class="fw4">{{monthData.cardsActive}}</h4>
         </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate di cui usate piu di una volta</h4>
+            <h4 class="fw4">{{monthData.cardsUsageActive}}</h4>
+        </div>
+    </div>
+
+    <div class="flex fColumn gap15 pad20 br1B" *ngIf="(pastMonthData$ | async) as pastMonthData">
+        <h2 class="fw7">Scorso Mese</h2>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi</h4>
+            <h4 class="fw4">{{pastMonthData.created}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte</h4>
+            <h4 class="fw4">{{pastMonthData.createdSemiActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti nuovi con carte timbrate</h4>
+            <h4 class="fw4">{{pastMonthData.createdActive}} - {{getPerc(pastMonthData.createdActive, pastMonthData.createdSemiActive)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati (loggati = tutti inclusi nuovi)</h4>
+            <h4 class="fw4">{{pastMonthData.session}} - {{(100 - getPerc(pastMonthData.created, pastMonthData.session))}}% non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati con nuove carte</h4>
+            <h4 class="fw4">{{pastMonthData.sessionSemiActive}} - {{ pastMonthData.sessionSemiActive - pastMonthData.createdSemiActive }} da non nuovi</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Utenti loggati che hanno timbrato</h4>
+            <h4 class="fw4">{{pastMonthData.sessionActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove</h4>
+            <h4 class="fw4">{{pastMonthData.cardsCreated}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte nuove timbrate</h4>
+            <h4 class="fw4">{{pastMonthData.cardsCreatedActive}} - {{getPerc(pastMonthData.cardsCreatedActive, pastMonthData.cardsCreated)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate</h4>
+            <h4 class="fw4">{{pastMonthData.cardsActive}}</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate di cui usate piu di una volta</h4>
+            <h4 class="fw4">{{pastMonthData.cardsUsageActive}}</h4>
+        </div>
     </div>
 
     <div class="flex fColumn gap15 pad20 br1B" *ngIf="(periodData$ | async) as periodData">
@@ -180,6 +240,10 @@
         <div class="flex fColumn gap5">
             <h4 class="fw5">Carte totali timbrate</h4>
             <h4 class="fw4">{{periodData.cardsActive}} - {{getPerc(periodData.cardsActive, periodData.cardsCreated)}}%</h4>
+        </div>
+        <div class="flex fColumn gap5">
+            <h4 class="fw5">Carte timbrate di cui usate piu di una volta</h4>
+            <h4 class="fw4">{{periodData.cardsUsageActive}} - {{getPerc(periodData.cardsUsageActive, periodData.cardsCreated)}}%</h4>
         </div>
     </div>
 </div>

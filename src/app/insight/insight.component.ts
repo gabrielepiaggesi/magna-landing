@@ -23,6 +23,7 @@ export class InsightComponent implements OnInit {
 
   public periodData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public monthData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
+  public pastMonthData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public weekData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public dayData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
   public yesterdayData$: BehaviorSubject<any> = new BehaviorSubject<any>(undefined);
@@ -35,6 +36,7 @@ export class InsightComponent implements OnInit {
     this.getDayData(1);
     this.getWeekData();
     this.getMonthData();
+    this.getMonthData(1);
     this.getPeriodData();
     this.generalData();
   }
@@ -50,7 +52,7 @@ export class InsightComponent implements OnInit {
   public getMonthData(amountToSubstract = 0) {
     this.loading = true;
     this.appService.getMonthData({amountToSubstract})
-    .then((response: any) => this.monthData$.next(response))
+    .then((response: any) => !amountToSubstract ? this.monthData$.next(response) : this.pastMonthData$.next(response))
     .catch((e: any) => console.error(e))
     .finally(() => this.loading = false);
   }

@@ -26,6 +26,12 @@ export class AppComponent {
       if (isNaN(qrObj.businessId)) return;
       
       const businessId = +qrObj.businessId;
+
+      if (window.location.href.includes('.web.app')) {
+        window.open('https://comebackapp.it/?businessId=' + businessId)
+        // window.location.href = 'https://comebackapp.it/?businessId=' + businessId;
+      }
+
       this.appService.businessId = businessId;
       if (qrObj.go && qrObj.go == 'landing' && businessId) {
         console.log('redirect landing');
